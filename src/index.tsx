@@ -1,10 +1,9 @@
 /* @refresh reload */
 import 'solid-devtools'
 import { createRouter, RouterProvider } from '@tanstack/solid-router'
-
-import './index.css'
 import { render } from 'solid-js/web'
 
+import './index.css'
 import { routeTree } from './routeTree.gen.ts'
 
 const root = document.getElementById('root')

@@ -17,7 +17,7 @@ export const Route = createFileRoute('/_auth/login')({
   validateSearch: (search) => parse(SearchSchema, search),
   component: RouteComponent,
   beforeLoad: ({ context, search: { redirect: redirectTo } }) => {
-    if (context.isAuthenticated) throw redirect({ to: redirectTo || '/' })
+    if (context.isAuthenticated?.()) throw redirect({ to: redirectTo || '/' })
   },
 })
 
@@ -42,12 +42,14 @@ function RouteComponent() {
         {(field) => (
           <div>
             <label>Username</label>
-            <input {...field.props} value={field.input} type="text" />
-            {field.errors && <span>{field.errors[0]}</span>}
+            <input {...field.props} value={field.input} type="text" class="border" />
+            {field.errors && <small>{field.errors[0]}</small>}
           </div>
         )}
       </Field>
-      <button type="submit">Login</button>
+      <button class="bg-neutral-300 p-1 py-0.5" type="submit">
+        Login
+      </button>
     </Form>
   )
 }
