@@ -1,0 +1,49 @@
+{
+  "name": "solid-dash",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsgo && vite build",
+    "preview": "vite preview",
+    "tsc": "tsgo --noEmit",
+    "lint": "oxlint --type-aware",
+    "format": "oxfmt",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@formisch/solid": "^0.9.3",
+    "@tanstack/solid-db": "^0.2.11",
+    "@tanstack/solid-query": "^5.90.23",
+    "@tanstack/solid-router": "^1.166.2",
+    "solid-js": "^1.9.11",
+    "tailwindcss": "^4.2.1",
+    "valibot": "^1.2.0",
+    "xior": "^0.8.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/router-plugin": "^1.166.2",
+    "@types/node": "^25.3.5",
+    "@typescript/native-preview": "^7.0.0-dev.20260307.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.2",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
+    "oxlint-tsgolint": "^0.16.0",
+    "solid-devtools": "^0.34.5",
+    "vite": "^8.0.0-beta.16",
+    "vite-plugin-solid": "^2.11.10",
+    "vite-tsconfig-paths": "^6.1.1"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "oxlint --type-aware",
+      "oxfmt --no-error-on-unmatched-pattern"
+    ]
+  }
+}
