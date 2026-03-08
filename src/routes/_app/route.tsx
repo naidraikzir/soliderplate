@@ -1,5 +1,8 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/solid-router'
 
+import { Button } from '@/components/ui/button'
+import { logout } from '@/modules/auth/services'
+
 export const Route = createFileRoute('/_app')({
   component: RouteComponent,
   beforeLoad({ context, location: { pathname } }) {
@@ -15,17 +18,15 @@ export const Route = createFileRoute('/_app')({
 function RouteComponent() {
   const navigate = Route.useNavigate()
 
-  function logout() {
-    localStorage.removeItem('token')
+  function onLogout() {
+    logout()
     navigate({ to: '/login' })
   }
 
   return (
     <div>
       <header>
-        <button class="bg-neutral-300 p-1 py-0.5" onClick={logout}>
-          Logout
-        </button>
+        <Button onClick={onLogout}>Logout</Button>
       </header>
 
       <Outlet />
