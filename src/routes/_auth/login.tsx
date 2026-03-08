@@ -1,13 +1,7 @@
-import { createForm, Field, Form } from '@formisch/solid'
 import { createFileRoute, redirect } from '@tanstack/solid-router'
-import { minLength, pipe, string, object, optional, parse } from 'valibot'
+import { string, object, optional, parse } from 'valibot'
 
-const LoginSchema = object({
-  username: pipe(
-    string('Username must be a string'),
-    minLength(3, 'Username must be at least 3 characters'),
-  ),
-})
+import { LoginForm } from '@/modules/auth'
 
 const SearchSchema = object({
   redirect: optional(string()),
@@ -25,31 +19,5 @@ function RouteComponent() {
   const navigate = Route.useNavigate()
   const { redirect } = Route.useSearch()()
 
-  const loginForm = createForm({
-    schema: LoginSchema,
-    validate: 'submit',
-  })
-
-  function handleSubmit(_values: { username: string }) {
-    const token = Math.random().toString(36).substring(2, 15)
-    localStorage.setItem('token', token)
-    navigate({ to: redirect || '/' })
-  }
-
-  return (
-    <Form of={loginForm} onSubmit={handleSubmit}>
-      <Field of={loginForm} path={['username']}>
-        {(field) => (
-          <div>
-            <label>Username</label>
-            <input {...field.props} value={field.input} type="text" class="border" />
-            {field.errors && <small>{field.errors[0]}</small>}
-          </div>
-        )}
-      </Field>
-      <button class="bg-neutral-300 p-1 py-0.5" type="submit">
-        Login
-      </button>
-    </Form>
-  )
+  return <LoginForm onSuccess={() => navigate({ to: redirect || '/' })} />
 }

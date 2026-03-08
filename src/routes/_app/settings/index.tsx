@@ -5,5 +5,5 @@ export const Route = createFileRoute('/_app/settings/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/_app/settings/"!</div>
+  return <div>Settings</div>
 }
