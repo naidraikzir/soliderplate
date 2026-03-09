@@ -8,8 +8,8 @@ import {
   TextFieldLabel,
 } from '@/components/ui/text-field'
 
-import { LoginSchema } from './schema'
-import { login } from './services'
+import { LoginSchema } from '../schema'
+import { login } from '../services'
 
 export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const loginForm = createForm({

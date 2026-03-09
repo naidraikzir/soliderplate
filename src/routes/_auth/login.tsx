@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/solid-router'
 import { string, object, optional, parse } from 'valibot'
 
-import { LoginForm } from '@/modules/auth'
+import { LoginForm } from '@/modules/auth/components/login-form'
 
 const SearchSchema = object({
   redirect: optional(string()),
