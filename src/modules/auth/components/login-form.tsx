@@ -1,12 +1,7 @@
 import { createForm, Field, Form } from '@formisch/solid'
 
+import { FormInput } from '@/components/forms/form-input'
 import { Button } from '@/components/ui/button'
-import {
-  TextField,
-  TextFieldErrorMessage,
-  TextFieldInput,
-  TextFieldLabel,
-} from '@/components/ui/text-field'
 
 import { LoginSchema } from '../schema'
 import { login } from '../services'
@@ -17,8 +12,8 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     validate: 'submit',
   })
 
-  function submit(_values: { username: string }) {
-    login()
+  function submit(values: { username: string }) {
+    login(values)
     onSuccess?.()
   }
 
@@ -26,18 +21,18 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-xs">
       <Field of={loginForm} path={['username']}>
         {(field) => (
-          <TextField
-            value={field.input}
+          <FormInput
+            {...field.props}
+            label="Username"
+            placeholder="Username..."
             onChange={field.onInput}
-            validationState={field.errors ? 'invalid' : 'valid'}
-          >
-            <TextFieldLabel>Username</TextFieldLabel>
-            <TextFieldInput {...field.props} type="text" />
-            <TextFieldErrorMessage>{field.errors?.[0]}</TextFieldErrorMessage>
-          </TextField>
+            errors={field.errors}
+          />
         )}
       </Field>
-      <Button type="submit">Login</Button>
+      <Button type="submit" class="justify-self-end">
+        Login
+      </Button>
     </Form>
   )
 }
