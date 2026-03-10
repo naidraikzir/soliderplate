@@ -1,5 +1,5 @@
 import type { FieldStore } from '@formisch/solid'
-import type { JSX } from 'solid-js'
+import { Show, type JSX } from 'solid-js'
 
 import {
   TextField,
@@ -29,7 +29,9 @@ export function FormTextarea(props: TFormTextareaProps) {
     >
       <TextFieldLabel>{props.label}</TextFieldLabel>
       <TextFieldTextArea placeholder={props.placeholder} />
-      <TextFieldErrorMessage>{props.errors?.[0]}</TextFieldErrorMessage>
+      <Show when={props.errors}>
+        <TextFieldErrorMessage class="text-xs">{props.errors?.[0]}</TextFieldErrorMessage>
+      </Show>
     </TextField>
   )
 }

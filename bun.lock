@@ -5,6 +5,8 @@
     "": {
       "name": "solid-dash",
       "dependencies": {
+        "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+        "@fontsource-variable/fraunces": "^5.2.9",
         "@formisch/solid": "^0.9.3",
         "@kobalte/core": "^0.13.11",
         "@tanstack/solid-db": "^0.2.11",
@@ -145,6 +147,10 @@
     "@floating-ui/dom": ["@floating-ui/dom@1.7.6", "", { "dependencies": { "@floating-ui/core": "^1.7.5", "@floating-ui/utils": "^0.2.11" } }, "sha512-9gZSAI5XM36880PPMm//9dfiEngYoC6Am2izES1FF406YFsjvyBMmeJ2g4SAju3xWwtuynNRFL2s9hgxpLI5SQ=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.11", "", {}, "sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg=="],
+
+    "@fontsource-variable/bricolage-grotesque": ["@fontsource-variable/bricolage-grotesque@5.2.10", "", {}, "sha512-5EDsCqgGpKVcJWE4sg9ydli+t5WM97mISYw5lla/Ev4z71FwXh1oN0YUU8xjkRW9+wBCGD9R+ntAvI8G4bUFJg=="],
+
+    "@fontsource-variable/fraunces": ["@fontsource-variable/fraunces@5.2.9", "", {}, "sha512-Y6IjunlN9Ni723np+GIgAaKzCDBrPRrqNi01TZxHs5wtHYROWFM9W6yiT+/gGwSjWIRD18oX17kD/BRWekc/Lw=="],
 
     "@formisch/solid": ["@formisch/solid@0.9.3", "", { "peerDependencies": { "solid-js": "^1.6.0", "typescript": ">=5", "valibot": "^1.0.0" }, "optionalPeers": ["typescript"] }, "sha512-cCT9VeWKdgConfeYTq2eayoMGpPgxiBClxat1UXqCn5PkHOWrHywx6V9OOAaeIKvCo3p/QEvHKReNMNTOcyYoQ=="],
 

@@ -1,5 +1,5 @@
 import type { FieldStore } from '@formisch/solid'
-import type { JSX } from 'solid-js'
+import { Show, type JSX } from 'solid-js'
 
 import { cx } from '@/lib/cva'
 
@@ -34,9 +34,13 @@ export function FormCheckbox(props: TFormCheckboxProps) {
       <CheckboxControl />
       <div class="grid gap-2 mt-0.5">
         <CheckboxLabel>{props.label}</CheckboxLabel>
-        <CheckboxDescription>{props.description}</CheckboxDescription>
+        <Show when={props.description}>
+          <CheckboxDescription>{props.description}</CheckboxDescription>
+        </Show>
       </div>
-      <div>{props.errors?.[0]}</div>
+      <Show when={props.errors}>
+        <div class="text-destructive text-xs">{props.errors?.[0]}</div>
+      </Show>
     </Checkbox>
   )
 }

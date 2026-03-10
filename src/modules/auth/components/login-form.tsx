@@ -30,6 +30,18 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
           />
         )}
       </Field>
+      <Field of={loginForm} path={['password']}>
+        {(field) => (
+          <FormInput
+            {...field.props}
+            type="password"
+            label="Password"
+            placeholder="********"
+            onChange={field.onInput}
+            errors={field.errors}
+          />
+        )}
+      </Field>
       <Button type="submit" class="justify-self-end">
         Login
       </Button>

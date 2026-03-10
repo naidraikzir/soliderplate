@@ -24,12 +24,12 @@ function RouteComponent() {
   }
 
   return (
-    <div>
+    <main class="grid gap-2 p-2">
       <header>
         <Button onClick={onLogout}>Logout</Button>
       </header>
 
       <Outlet />
-    </div>
+    </main>
   )
 }

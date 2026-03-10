@@ -1,6 +1,7 @@
 @import "tailwindcss";
-
 @import "tw-animate-css";
+@import '@fontsource-variable/bricolage-grotesque';
+@import "@fontsource-variable/fraunces";
 
 @custom-variant dark (&:is([data-kb-theme="dark"] *));
 
@@ -48,6 +49,7 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --font-heading: 'Bricolage Grotesque Variable', var(--font-sans);
 }
 
 :root {
@@ -91,6 +93,7 @@
   --vis-tooltip-text-color: var(--color-foreground);
   --vis-font-family: var(--font-sans);
   --vis-legend-label-color: var(--vis-tooltip-text-color);
+  --default-font-family: 'Fraunces Variable', var(--font-serif);
 }
 
 [data-kb-theme="dark"] {
@@ -132,7 +135,15 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    @apply font-light;
+  }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  button {
+    @apply cursor-pointer;
   }
 }

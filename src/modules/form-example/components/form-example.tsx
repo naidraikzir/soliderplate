@@ -37,8 +37,10 @@ export function FormExample() {
   ]
 
   return (
-    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 gap-2 max-w-xs p-2">
-      <Button onClick={() => setDisabled((v) => !v)}>Disabled</Button>
+    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 gap-2 max-w-sm">
+      <Button class="justify-self-end" onClick={() => setDisabled((v) => !v)}>
+        Disable
+      </Button>
 
       <Field of={form} path={['input']}>
         {(field) => (
@@ -85,6 +87,7 @@ export function FormExample() {
             {...field.props}
             multiple={false}
             label="Select"
+            placeholder="Select..."
             options={options}
             value={options.find((o) => o.value === field.input) ?? null}
             onChange={(v) => field.onInput(v?.value ?? '')}
@@ -99,6 +102,7 @@ export function FormExample() {
           <FormSelect
             {...field.props}
             label="Select multiple"
+            placeholder="Select..."
             options={options}
             value={options.filter((o) => field.input.includes(o.value)) ?? []}
             onChange={(v) => field.onInput(v?.map((o) => o.value) ?? [])}
@@ -109,12 +113,14 @@ export function FormExample() {
         )}
       </Field>
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit" class="justify-self-end" disabled={disabled()}>
+        Submit
+      </Button>
 
-      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg">
+      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg text-xs">
         {JSON.stringify(getInput(form), null, 2)}
       </pre>
-      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg">
+      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg text-xs">
         {JSON.stringify(getAllErrors(form), null, 2)}
       </pre>
     </Form>

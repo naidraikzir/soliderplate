@@ -1,6 +1,6 @@
 import type { FieldStore } from '@formisch/solid'
 import type { JSX } from 'solid-js'
-import { For, Match, Switch } from 'solid-js'
+import { For, Match, Show, Switch } from 'solid-js'
 
 import { Badge } from '../ui/badge'
 import {
@@ -17,7 +17,7 @@ import {
   ComboboxTrigger,
 } from '../ui/combobox'
 
-export type TOption = {
+type TOption = {
   label: string
   value: string
   disabled?: boolean
@@ -26,6 +26,7 @@ export type TOption = {
 type TFormSelectProps<TMultiple extends boolean> = {
   class?: string
   label?: JSX.Element
+  placeholder?: string
   description?: string
   options: TOption[]
   value?: TMultiple extends true ? TOption[] | null : TOption | null
@@ -43,11 +44,13 @@ export function FormSelect<T extends boolean = false>(props: TFormSelectProps<T>
     // @ts-expect-error - Kobalte's types don't support dynamic multiple selection
     <Combobox<TOption>
       class={props.class}
+      triggerMode="focus"
       options={props.options}
       optionValue="value"
       optionTextValue="label"
       optionLabel="label"
       optionDisabled="disabled"
+      placeholder={props.placeholder}
       value={props.value}
       onChange={(val: TOption | TOption[] | undefined) => props.onChange((val ?? null) as any)}
       onInputChange={props.onInputChange}
@@ -102,8 +105,12 @@ export function FormSelect<T extends boolean = false>(props: TFormSelectProps<T>
           </Switch>
         )}
       </ComboboxControl>
-      <ComboboxDescription>{props.description}</ComboboxDescription>
-      <ComboboxErrorMessage>{props.errors?.[0]}</ComboboxErrorMessage>
+      <Show when={props.description}>
+        <ComboboxDescription>{props.description}</ComboboxDescription>
+      </Show>
+      <Show when={props.errors}>
+        <ComboboxErrorMessage class="text-xs">{props.errors?.[0]}</ComboboxErrorMessage>
+      </Show>
       <ComboboxPortal>
         <ComboboxContent />
       </ComboboxPortal>
