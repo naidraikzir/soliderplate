@@ -3,22 +3,22 @@ import { createForm, Field, Form } from '@formisch/solid'
 import { FormInput } from '@/components/forms/form-input'
 import { Button } from '@/components/ui/button'
 
-import { LoginSchema } from '../schema'
+import { loginSchema, type TLoginSchema } from '../schema'
 import { login } from '../services'
 
 export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const loginForm = createForm({
-    schema: LoginSchema,
+    schema: loginSchema,
     validate: 'submit',
   })
 
-  function submit(values: { username: string }) {
+  function submit(values: TLoginSchema) {
     login(values)
     onSuccess?.()
   }
 
   return (
-    <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-xs">
+    <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-xs p-2">
       <Field of={loginForm} path={['username']}>
         {(field) => (
           <FormInput

@@ -1,9 +1,14 @@
 import type { FieldStore } from '@formisch/solid'
 import type { JSX } from 'solid-js'
 
-import { TextField, TextFieldErrorMessage, TextFieldInput, TextFieldLabel } from '../ui/text-field'
+import {
+  TextField,
+  TextFieldErrorMessage,
+  TextFieldLabel,
+  TextFieldTextArea,
+} from '../ui/text-field'
 
-type TFormInputProps = {
+type TFormTextareaProps = {
   class?: string
   label?: JSX.Element
   placeholder?: string
@@ -13,7 +18,7 @@ type TFormInputProps = {
   disabled?: boolean
 }
 
-export function FormInput(props: TFormInputProps) {
+export function FormTextarea(props: TFormTextareaProps) {
   return (
     <TextField
       class={props.class}
@@ -23,7 +28,7 @@ export function FormInput(props: TFormInputProps) {
       disabled={props.disabled}
     >
       <TextFieldLabel>{props.label}</TextFieldLabel>
-      <TextFieldInput type="text" placeholder={props.placeholder} />
+      <TextFieldTextArea placeholder={props.placeholder} />
       <TextFieldErrorMessage>{props.errors?.[0]}</TextFieldErrorMessage>
     </TextField>
   )
