@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 
 import { exampleSchema, type TExampleSchema } from '../schema'
 
-export function ExampleForm() {
+export function FormExample() {
   const [disabled, setDisabled] = createSignal(false)
 
   const form = createForm({
