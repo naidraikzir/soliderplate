@@ -20,18 +20,19 @@ type TFormTextareaProps = {
 
 export function FormTextarea(props: TFormTextareaProps) {
   return (
-    <TextField
-      class={props.class}
-      value={props.value}
-      onChange={props.onChange}
-      validationState={props.errors ? 'invalid' : 'valid'}
-      disabled={props.disabled}
-    >
-      <TextFieldLabel>{props.label}</TextFieldLabel>
-      <TextFieldTextArea placeholder={props.placeholder} />
-      <Show when={props.errors}>
-        <TextFieldErrorMessage class="text-xs">{props.errors?.[0]}</TextFieldErrorMessage>
-      </Show>
-    </TextField>
+    <div class={props.class}>
+      <TextField
+        value={props.value}
+        onChange={props.onChange}
+        validationState={props.errors ? 'invalid' : 'valid'}
+        disabled={props.disabled}
+      >
+        <TextFieldLabel>{props.label}</TextFieldLabel>
+        <TextFieldTextArea placeholder={props.placeholder} />
+        <Show when={props.errors}>
+          <TextFieldErrorMessage class="text-xs">{props.errors?.[0]}</TextFieldErrorMessage>
+        </Show>
+      </TextField>
+    </div>
   )
 }

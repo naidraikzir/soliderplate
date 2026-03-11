@@ -39,7 +39,7 @@ type TFormSelectProps<TMultiple extends boolean> = {
   disabled?: boolean
 }
 
-export function FormSelect<T extends boolean = false>(props: TFormSelectProps<T>) {
+export function FormSelect<TMultiple extends boolean = false>(props: TFormSelectProps<TMultiple>) {
   return (
     // @ts-expect-error - Kobalte's types don't support dynamic multiple selection
     <Combobox<TOption>

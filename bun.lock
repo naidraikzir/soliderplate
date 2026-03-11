@@ -5,6 +5,7 @@
     "": {
       "name": "solid-dash",
       "dependencies": {
+        "@corvu/calendar": "^0.1.2",
         "@fontsource-variable/bricolage-grotesque": "^5.2.10",
         "@fontsource-variable/fraunces": "^5.2.9",
         "@formisch/solid": "^0.9.3",
@@ -81,6 +82,8 @@
     "@babel/traverse": ["@babel/traverse@7.29.0", "", { "dependencies": { "@babel/code-frame": "^7.29.0", "@babel/generator": "^7.29.0", "@babel/helper-globals": "^7.28.0", "@babel/parser": "^7.29.0", "@babel/template": "^7.28.6", "@babel/types": "^7.29.0", "debug": "^4.3.1" } }, "sha512-4HPiQr0X7+waHfyXPZpWPfWL/J7dcN1mx9gL6WdQVMbPnF3+ZhSMs8tCxN7oHddJE9fhNE7+lxdnlyemKfJRuA=="],
 
     "@babel/types": ["@babel/types@7.29.0", "", { "dependencies": { "@babel/helper-string-parser": "^7.27.1", "@babel/helper-validator-identifier": "^7.28.5" } }, "sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A=="],
+
+    "@corvu/calendar": ["@corvu/calendar@0.1.2", "", { "dependencies": { "@corvu/utils": "~0.4.2" }, "peerDependencies": { "solid-js": "^1.8" } }, "sha512-Vbdns1iNNI0WTIwDZS7m9pHWtr/YTz7yrisXhHUCfl4mxDvb9W8MMmun651wiEjhL7+OrcNbbl2kTOmYSFIf4g=="],
 
     "@corvu/utils": ["@corvu/utils@0.4.2", "", { "dependencies": { "@floating-ui/dom": "^1.6.11" }, "peerDependencies": { "solid-js": "^1.8" } }, "sha512-Ox2kYyxy7NoXdKWdHeDEjZxClwzO4SKM8plAaVwmAJPxHMqA0rLOoAsa+hBDwRLpctf+ZRnAd/ykguuJidnaTA=="],
 
