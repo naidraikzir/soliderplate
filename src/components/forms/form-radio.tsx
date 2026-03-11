@@ -42,13 +42,13 @@ export function FormRadio(props: TFormRadioProps) {
       validationState={props.errors ? 'invalid' : 'valid'}
       disabled={props.disabled}
     >
-      <RadioGroupLabel class={cx({ 'text-destructive': props.errors })}>
+      <RadioGroupLabel class="data-disabled:opacity-50 data-invalid:text-destructive">
         {props.label}
       </RadioGroupLabel>
       <RadioGroupItems class={cx('gap-x-4', { 'flex-col': props.orientation === 'vertical' })}>
         <For each={props.options}>
           {(item) => (
-            <RadioGroupItem class="gap-2" value={item.value}>
+            <RadioGroupItem class="gap-2 data-disabled:opacity-50" value={item.value}>
               <RadioGroupItemInput />
               <RadioGroupItemControl>
                 <RadioGroupItemIndicator />
@@ -59,7 +59,9 @@ export function FormRadio(props: TFormRadioProps) {
         </For>
       </RadioGroupItems>
       <Show when={props.errors}>
-        <RadioGroupErrorMessage>{props.errors?.[0]}</RadioGroupErrorMessage>
+        <RadioGroupErrorMessage class="text-xs data-disabled:opacity-50">
+          {props.errors?.[0]}
+        </RadioGroupErrorMessage>
       </Show>
     </RadioGroup>
   )
