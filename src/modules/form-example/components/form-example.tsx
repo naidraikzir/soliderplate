@@ -7,6 +7,7 @@ import { FormRadio } from '@/components/forms/form-radio'
 import { FormSelect } from '@/components/forms/form-select'
 import { FormTextarea } from '@/components/forms/form-textarea'
 import { Button } from '@/components/ui/button'
+import { ToggleButton } from '@/components/ui/toggle-button'
 
 import { exampleSchema, type TExampleSchema } from '../schema'
 
@@ -41,9 +42,15 @@ export function FormExample() {
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 gap-2 max-w-sm">
       <div class="text-4xl capitalize font-heading font-extrabold">Form Example</div>
 
-      <Button class="justify-self-end" onClick={() => setDisabled((v) => !v)}>
+      <ToggleButton
+        variant="outline"
+        size="sm"
+        class="justify-self-end"
+        pressed={disabled()}
+        onChange={setDisabled}
+      >
         Disable
-      </Button>
+      </ToggleButton>
 
       <Field of={form} path={['input']}>
         {(field) => (
