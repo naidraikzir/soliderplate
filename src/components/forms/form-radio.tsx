@@ -37,7 +37,7 @@ export function FormRadio(props: TFormRadioProps) {
     <RadioGroup
       orientation={props.orientation}
       class={props.class}
-      value={props.value?.value}
+      value={props.value?.value || ''}
       onChange={props.onChange}
       validationState={props.errors ? 'invalid' : 'valid'}
       disabled={props.disabled}

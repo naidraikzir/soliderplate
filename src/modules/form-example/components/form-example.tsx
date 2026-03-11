@@ -1,4 +1,4 @@
-import { createForm, Field, Form, getInput, getAllErrors } from '@formisch/solid'
+import { createForm, Field, Form, getInput, getAllErrors, reset } from '@formisch/solid'
 import { createSignal } from 'solid-js'
 
 import { FormCheckbox } from '@/components/forms/form-checkbox'
@@ -21,6 +21,7 @@ export function FormExample() {
       checkbox: false,
       select: '',
       select_multiple: [],
+      radio: '',
     },
     schema: exampleSchema,
     validate: 'submit',
@@ -138,9 +139,15 @@ export function FormExample() {
         )}
       </Field>
 
-      <Button type="submit" class="justify-self-end" disabled={disabled()}>
-        Submit
-      </Button>
+      <div class="flex justify-end gap-2">
+        <Button type="button" onClick={() => reset(form)} disabled={disabled()}>
+          Reset
+        </Button>
+
+        <Button type="submit" disabled={disabled()}>
+          Submit
+        </Button>
+      </div>
 
       <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg text-xs">
         {JSON.stringify(getInput(form), null, 2)}

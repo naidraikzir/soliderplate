@@ -40,5 +40,5 @@ Learn more about deploying your application with the [documentations](https://vi
 ## Todo
 
 - [ ] Form Example Datepicker  
-- [ ] Form Example Radio  
+- [x] Form Example Radio  
 - [ ] DB Example
