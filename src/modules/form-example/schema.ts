@@ -12,6 +12,7 @@ export const exampleSchema = object({
     array(string('Select multiple is required')),
     minLength(1, 'Select at least 1'),
   ),
+  radio: pipe(string('Radio is required'), minLength(1, 'Radio is required')),
 })
 
 export type TExampleSchema = InferOutput<typeof exampleSchema>

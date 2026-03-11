@@ -1,0 +1,66 @@
+import type { FieldStore } from '@formisch/solid'
+import { For, Show, type JSX } from 'solid-js'
+
+import { cx } from '@/lib/cva'
+
+import {
+  RadioGroup,
+  RadioGroupErrorMessage,
+  RadioGroupItem,
+  RadioGroupItemControl,
+  RadioGroupItemIndicator,
+  RadioGroupItemInput,
+  RadioGroupItemLabel,
+  RadioGroupItems,
+  RadioGroupLabel,
+} from '../ui/radio-group'
+
+type TOption = {
+  label: string
+  value: string
+  disabled?: boolean
+}
+
+type TFormRadioProps = {
+  orientation?: 'horizontal' | 'vertical'
+  class?: string
+  label?: JSX.Element
+  options: TOption[]
+  value?: TOption | null
+  onChange: (value: string) => void
+  errors?: FieldStore['errors'] | null
+  disabled?: boolean
+}
+
+export function FormRadio(props: TFormRadioProps) {
+  return (
+    <RadioGroup
+      orientation={props.orientation}
+      class={props.class}
+      value={props.value?.value}
+      onChange={props.onChange}
+      validationState={props.errors ? 'invalid' : 'valid'}
+      disabled={props.disabled}
+    >
+      <RadioGroupLabel class={cx({ 'text-destructive': props.errors })}>
+        {props.label}
+      </RadioGroupLabel>
+      <RadioGroupItems class={cx('gap-x-4', { 'flex-col': props.orientation === 'vertical' })}>
+        <For each={props.options}>
+          {(item) => (
+            <RadioGroupItem class="gap-2" value={item.value}>
+              <RadioGroupItemInput />
+              <RadioGroupItemControl>
+                <RadioGroupItemIndicator />
+              </RadioGroupItemControl>
+              <RadioGroupItemLabel>{item.label}</RadioGroupItemLabel>
+            </RadioGroupItem>
+          )}
+        </For>
+      </RadioGroupItems>
+      <Show when={props.errors}>
+        <RadioGroupErrorMessage>{props.errors?.[0]}</RadioGroupErrorMessage>
+      </Show>
+    </RadioGroup>
+  )
+}

@@ -3,6 +3,7 @@ import { createSignal } from 'solid-js'
 
 import { FormCheckbox } from '@/components/forms/form-checkbox'
 import { FormInput } from '@/components/forms/form-input'
+import { FormRadio } from '@/components/forms/form-radio'
 import { FormSelect } from '@/components/forms/form-select'
 import { FormTextarea } from '@/components/forms/form-textarea'
 import { Button } from '@/components/ui/button'
@@ -38,6 +39,8 @@ export function FormExample() {
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 gap-2 max-w-sm">
+      <div class="text-4xl capitalize font-heading font-extrabold">Form Example</div>
+
       <Button class="justify-self-end" onClick={() => setDisabled((v) => !v)}>
         Disable
       </Button>
@@ -109,6 +112,21 @@ export function FormExample() {
             errors={field.errors}
             disabled={disabled()}
             multiple
+          />
+        )}
+      </Field>
+
+      <Field of={form} path={['radio']}>
+        {(field) => (
+          <FormRadio
+            {...field.props}
+            orientation="vertical"
+            label="Radio"
+            options={options}
+            value={options.find((o) => o.value === field.input) ?? null}
+            onChange={field.onInput}
+            errors={field.errors}
+            disabled={disabled()}
           />
         )}
       </Field>
