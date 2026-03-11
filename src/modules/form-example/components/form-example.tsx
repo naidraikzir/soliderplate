@@ -85,6 +85,7 @@ export function FormExample() {
             {...field.props}
             label="Checkbox"
             description="Checkbox description"
+            checked={field.input}
             onChange={field.onInput}
             errors={field.errors}
             disabled={disabled()}
