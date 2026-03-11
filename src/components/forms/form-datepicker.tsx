@@ -1,5 +1,6 @@
 import type { FieldStore } from '@formisch/solid'
 import dayjs from 'dayjs'
+import { CalendarIcon } from 'lucide-solid'
 import {
   createEffect,
   createSignal,
@@ -99,18 +100,22 @@ function SingleDatePicker(props: ISingleProps & { id: string }) {
               <Button
                 variant="outline"
                 id={props.id}
-                class="justify-between font-normal data-disabled:opacity-50 data-invalid:border-destructive"
+                class="justify-between font-normal text-xs text-left data-disabled:opacity-50 data-invalid:border-destructive"
                 data-disabled={props.disabled ? '' : undefined}
                 data-invalid={props.errors}
                 {...triggerProps}
               >
-                <Show
-                  when={calendar.value}
-                  fallback={props.placeholder || props.format || 'Select date'}
-                >
-                  {dayjs(calendar.value).format(props.format)}
-                </Show>
-                <ChevronDownIcon />
+                <CalendarIcon class="text-muted-foreground" />
+                <div class="grow">
+                  <Show
+                    when={calendar.value}
+                    fallback={
+                      <span class="text-muted-foreground">{props.placeholder || props.format}</span>
+                    }
+                  >
+                    {dayjs(calendar.value).format(props.format)}
+                  </Show>
+                </div>
               </Button>
             )}
           />
@@ -197,19 +202,23 @@ function RangeDatePicker(props: IRangeProps & { id: string }) {
               <Button
                 variant="outline"
                 id={props.id}
-                class="min-w-48 justify-between font-normal data-disabled:opacity-50 data-invalid:border-destructive"
+                class="justify-between font-normal text-xs text-left data-disabled:opacity-50 data-invalid:border-destructive"
                 data-disabled={props.disabled ? '' : undefined}
                 data-invalid={props.errors}
                 {...triggerProps}
               >
-                <Show
-                  when={calendar.value.from && calendar.value.to}
-                  fallback={props.placeholder || props.format || 'Select date'}
-                >
-                  {dayjs(calendar.value.from!).format(props.format)} -{' '}
-                  {dayjs(calendar.value.to!).format(props.format)}
-                </Show>
-                <ChevronDownIcon />
+                <CalendarIcon class="text-muted-foreground" />
+                <span class="grow overflow-x-hidden">
+                  <Show
+                    when={calendar.value.from && calendar.value.to}
+                    fallback={
+                      <span class="text-muted-foreground">{props.placeholder || props.format}</span>
+                    }
+                  >
+                    {dayjs(calendar.value.from!).format(props.format)} -{' '}
+                    {dayjs(calendar.value.to!).format(props.format)}
+                  </Show>
+                </span>
               </Button>
             )}
           />
@@ -219,19 +228,19 @@ function RangeDatePicker(props: IRangeProps & { id: string }) {
                 <div class="relative w-full">
                   <CalendarNav
                     action="prev-month"
-                    class="absolute left-1"
+                    class="absolute top-0.5 md:top-0 left-1 size-6 md:size-7"
                     aria-label="Go to previous month"
                   />
                   <CalendarNav
                     action="next-month"
-                    class="absolute right-1"
+                    class="absolute top-0.5 md:top-0 right-1 size-6 md:size-7"
                     aria-label="Go to next month"
                   />
                 </div>
                 <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
                   <Index each={calendar.months}>
                     {(month, index) => (
-                      <div class="flex flex-col gap-4">
+                      <div class="flex flex-col gap-2 md:gap-4">
                         <div class="flex h-7 items-center justify-center">
                           <CalendarLabel index={index}>
                             {dayjs(month().month).format('MMMM')} {month().month.getFullYear()}
@@ -259,7 +268,7 @@ function RangeDatePicker(props: IRangeProps & { id: string }) {
                                         <CalendarCellTrigger
                                           day={day()}
                                           month={month().month}
-                                          class="dark:data-today:focus-visible:ring-ring/50"
+                                          class="h-6 md:h-8 dark:data-today:focus-visible:ring-ring/50"
                                         >
                                           {day().getDate()}
                                         </CalendarCellTrigger>
@@ -281,20 +290,5 @@ function RangeDatePicker(props: IRangeProps & { id: string }) {
         </Popover>
       )}
     </Calendar>
-  )
-}
-
-function ChevronDownIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24">
-      <path
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="m6 9l6 6l6-6"
-      />
-    </svg>
   )
 }
