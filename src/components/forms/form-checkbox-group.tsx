@@ -12,7 +12,7 @@ import * as v from 'valibot'
 
 import { cx } from '@/lib/cva'
 
-import { FormCheckbox } from './form-checkbox'
+import { Checkbox, CheckboxControl, CheckboxInput, CheckboxLabel } from '../ui/checkbox'
 
 type TFormCheckboxGroupProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
@@ -52,7 +52,7 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
         }
 
         return (
-          <div class={cx('grid gap-3', props.class)}>
+          <div class={cx('self-start grid gap-3', props.class)}>
             <span
               class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
               data-invalid={field.errors}
@@ -63,12 +63,19 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
             <div class="flex gap-3 gap-x-4 gap-y-2 flex-col">
               <For each={props.options}>
                 {(option) => (
-                  <FormCheckbox
-                    label={option.label}
+                  <Checkbox
+                    class="flex gap-2"
                     checked={getArrayValue().includes(option.value)}
                     onChange={(checked) => handleChange(checked, option.value)}
-                    disabled={option.disabled ?? props.disabled}
-                  />
+                    validationState={field.errors ? 'invalid' : 'valid'}
+                    disabled={props.disabled}
+                  >
+                    <CheckboxInput />
+                    <CheckboxControl class="mt-0.5" />
+                    <div class="grid gap-2">
+                      <CheckboxLabel class="leading-5">{props.label}</CheckboxLabel>
+                    </div>
+                  </Checkbox>
                 )}
               </For>
               <Show when={field.errors}>

@@ -60,20 +60,14 @@ export function FormExample() {
         )}
       </Field>
 
-      <Field of={form} path={['checkbox']}>
-        {(field) => (
-          <FormCheckbox
-            {...field.props}
-            class="md:col-span-2"
-            label="Checkbox"
-            description="Checkbox Description"
-            checked={field.input}
-            onChange={field.onInput}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormCheckbox
+        of={form}
+        path={['checkbox']}
+        class="md:col-span-2"
+        label="Checkbox"
+        description="Checkbox Description"
+        disabled={disabled()}
+      />
 
       <Field of={form} path={['textarea']}>
         {(field) => (
