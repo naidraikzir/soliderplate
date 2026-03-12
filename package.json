@@ -18,11 +18,11 @@
     "@fontsource-variable/fraunces": "^5.2.9",
     "@formisch/solid": "^0.9.3",
     "@kobalte/core": "^0.13.11",
-    "@tanstack/solid-db": "^0.2.11",
-    "@tanstack/solid-query": "^5.90.23",
-    "@tanstack/solid-router": "^1.166.2",
+    "@tanstack/solid-db": "^0.2.12",
+    "@tanstack/solid-query": "^5.90.26",
+    "@tanstack/solid-router": "^1.166.7",
     "cva": "^1.0.0-beta.4",
-    "dayjs": "^1.11.19",
+    "dayjs": "^1.11.20",
     "lucide-solid": "^0.577.0",
     "radashi": "^12.7.2",
     "solid-js": "^1.9.11",
@@ -34,21 +34,20 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "@tanstack/router-plugin": "^1.166.3",
-    "@types/node": "^25.3.5",
+    "@tanstack/router-plugin": "^1.166.7",
+    "@types/node": "^25.5.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2",
-    "oxfmt": "^0.36.0",
-    "oxlint": "^1.51.0",
+    "lint-staged": "^16.3.3",
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0",
     "oxlint-tsgolint": "^0.16.0",
     "solid-devtools": "^0.34.5",
     "typescript": "^5.9.3",
-    "vite": "^8.0.0-beta.16",
-    "vite-plugin-solid": "^2.11.10",
-    "vite-tsconfig-paths": "^6.1.1"
+    "vite": "^8.0.0",
+    "vite-plugin-solid": "^2.11.10"
   },
   "overrides": {
-    "vite": "$vite"
+    "cva": "$cva"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

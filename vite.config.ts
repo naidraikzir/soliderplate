@@ -3,7 +3,6 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import solidDevtools from 'solid-devtools/vite'
 import { defineConfig } from 'vite'
 import solid from 'vite-plugin-solid'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
@@ -16,6 +15,8 @@ export default defineConfig({
       autoname: true,
     }),
     solid(),
-    tsconfigPaths(),
   ],
+  resolve: {
+    tsconfigPaths: true,
+  },
 })
