@@ -73,37 +73,24 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <Field of={form} path={['select']}>
-        {(field) => (
-          <FormSelect
-            {...field.props}
-            multiple={false}
-            label="Select"
-            placeholder="Select..."
-            options={options}
-            value={options.find((o) => o.value === field.input) ?? null}
-            onChange={(v) => field.onInput(v?.value ?? '')}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormSelect
+        of={form}
+        path={['select']}
+        label="Select"
+        placeholder="Select..."
+        options={options}
+        disabled={disabled()}
+      />
 
-      <Field of={form} path={['select_multiple']}>
-        {(field) => (
-          <FormSelect
-            {...field.props}
-            label="Select multiple"
-            placeholder="Select..."
-            options={options}
-            value={options.filter((o) => field.input.includes(o.value)) ?? []}
-            onChange={(v) => field.onInput(v?.map((o) => o.value) ?? [])}
-            errors={field.errors}
-            disabled={disabled()}
-            multiple
-          />
-        )}
-      </Field>
+      <FormSelect
+        of={form}
+        path={['select_multiple']}
+        label="Select multiple"
+        placeholder="Select..."
+        options={options}
+        disabled={disabled()}
+        multiple
+      />
 
       <FormCheckboxGroup
         of={form}
