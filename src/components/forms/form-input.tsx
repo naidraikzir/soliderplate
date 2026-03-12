@@ -1,34 +1,50 @@
-import type { FieldStore } from '@formisch/solid'
+import {
+  Field,
+  type FormStore,
+  type PartialValues,
+  type PathValue,
+  type RequiredPath,
+  type Schema,
+  type ValidPath,
+} from '@formisch/solid'
 import { Show, type JSX } from 'solid-js'
+import * as v from 'valibot'
 
 import { TextField, TextFieldErrorMessage, TextFieldInput, TextFieldLabel } from '../ui/text-field'
 
-type TFormInputProps = {
+type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+  of: FormStore<TSchema>
+  path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url'
   label?: JSX.Element
   placeholder?: string
-  value?: string
-  onChange: (value: string) => void
-  errors?: FieldStore['errors'] | null
   disabled?: boolean
 }
 
-export function FormInput(props: TFormInputProps) {
+export function FormInput<TSchema extends Schema, TFieldPath extends RequiredPath>(
+  props: TFormInputProps<TSchema, TFieldPath>,
+) {
+  type TFieldInput = PartialValues<PathValue<v.InferInput<TSchema>, TFieldPath>>
+
   return (
-    <div class={props.class}>
-      <TextField
-        value={props.value}
-        onChange={props.onChange}
-        validationState={props.errors ? 'invalid' : 'valid'}
-        disabled={props.disabled}
-      >
-        <TextFieldLabel>{props.label}</TextFieldLabel>
-        <TextFieldInput type={props.type} placeholder={props.placeholder} />
-        <Show when={props.errors}>
-          <TextFieldErrorMessage class="text-xs">{props.errors?.[0]}</TextFieldErrorMessage>
-        </Show>
-      </TextField>
-    </div>
+    <Field of={props.of} path={props.path}>
+      {(field) => (
+        <div class={props.class}>
+          <TextField
+            value={field.input as string}
+            onChange={(value) => field.onInput(value as TFieldInput)}
+            validationState={field.errors ? 'invalid' : 'valid'}
+            disabled={props.disabled}
+          >
+            <TextFieldLabel>{props.label}</TextFieldLabel>
+            <TextFieldInput type={props.type} placeholder={props.placeholder} />
+            <Show when={field.errors}>
+              <TextFieldErrorMessage class="text-xs">{field.errors?.[0]}</TextFieldErrorMessage>
+            </Show>
+          </TextField>
+        </div>
+      )}
+    </Field>
   )
 }

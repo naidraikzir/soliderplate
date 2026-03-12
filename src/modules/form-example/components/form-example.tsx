@@ -47,18 +47,13 @@ export function FormExample() {
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-md">
       <div class="text-4xl capitalize font-heading font-extrabold md:col-span-2">Form Example</div>
 
-      <Field of={form} path={['input']}>
-        {(field) => (
-          <FormInput
-            {...field.props}
-            label="Input"
-            placeholder="Input..."
-            onChange={field.onInput}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormInput
+        of={form}
+        path={['input']}
+        label="Input"
+        placeholder="Input..."
+        disabled={disabled()}
+      />
 
       <FormCheckbox
         of={form}
@@ -69,19 +64,14 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <Field of={form} path={['textarea']}>
-        {(field) => (
-          <FormTextarea
-            {...field.props}
-            class="md:col-span-2"
-            label="Textarea"
-            placeholder="Textarea..."
-            onChange={field.onInput}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormTextarea
+        of={form}
+        path={['textarea']}
+        class="md:col-span-2"
+        label="Textarea"
+        placeholder="Textarea..."
+        disabled={disabled()}
+      />
 
       <Field of={form} path={['select']}>
         {(field) => (
@@ -123,20 +113,14 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <Field of={form} path={['radio']}>
-        {(field) => (
-          <FormRadio
-            {...field.props}
-            orientation="vertical"
-            label="Radio"
-            options={options}
-            value={options.find((o) => o.value === field.input) ?? null}
-            onChange={field.onInput}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormRadio
+        of={form}
+        path={['radio']}
+        orientation="vertical"
+        label="Radio"
+        options={options}
+        disabled={disabled()}
+      />
 
       <Field of={form} path={['date']}>
         {(field) => (

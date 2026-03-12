@@ -1,5 +1,14 @@
-import type { FieldStore } from '@formisch/solid'
+import {
+  Field,
+  type FormStore,
+  type PartialValues,
+  type PathValue,
+  type RequiredPath,
+  type Schema,
+  type ValidPath,
+} from '@formisch/solid'
 import { Show, type JSX } from 'solid-js'
+import * as v from 'valibot'
 
 import {
   TextField,
@@ -8,31 +17,38 @@ import {
   TextFieldTextArea,
 } from '../ui/text-field'
 
-type TFormTextareaProps = {
+type TFormTextareaProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+  of: FormStore<TSchema>
+  path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
   label?: JSX.Element
   placeholder?: string
-  value?: string
-  onChange: (value: string) => void
-  errors?: FieldStore['errors'] | null
   disabled?: boolean
 }
 
-export function FormTextarea(props: TFormTextareaProps) {
+export function FormTextarea<TSchema extends Schema, TFieldPath extends RequiredPath>(
+  props: TFormTextareaProps<TSchema, TFieldPath>,
+) {
+  type TFieldInput = PartialValues<PathValue<v.InferInput<TSchema>, TFieldPath>>
+
   return (
-    <div class={props.class}>
-      <TextField
-        value={props.value}
-        onChange={props.onChange}
-        validationState={props.errors ? 'invalid' : 'valid'}
-        disabled={props.disabled}
-      >
-        <TextFieldLabel>{props.label}</TextFieldLabel>
-        <TextFieldTextArea placeholder={props.placeholder} />
-        <Show when={props.errors}>
-          <TextFieldErrorMessage class="text-xs">{props.errors?.[0]}</TextFieldErrorMessage>
-        </Show>
-      </TextField>
-    </div>
+    <Field of={props.of} path={props.path}>
+      {(field) => (
+        <div class={props.class}>
+          <TextField
+            value={field.input as string}
+            onChange={(value) => field.onInput(value as TFieldInput)}
+            validationState={field.errors ? 'invalid' : 'valid'}
+            disabled={props.disabled}
+          >
+            <TextFieldLabel>{props.label}</TextFieldLabel>
+            <TextFieldTextArea placeholder={props.placeholder} />
+            <Show when={field.errors}>
+              <TextFieldErrorMessage class="text-xs">{field.errors?.[0]}</TextFieldErrorMessage>
+            </Show>
+          </TextField>
+        </div>
+      )}
+    </Field>
   )
 }

@@ -1,6 +1,5 @@
 import {
   Field,
-  type FieldStore,
   type FormStore,
   type PartialValues,
   type PathValue,
@@ -25,7 +24,6 @@ type TFormCheckboxProps<TSchema extends Schema, TFieldPath extends RequiredPath>
   class?: string
   label?: JSX.Element
   description?: string
-  errors?: FieldStore['errors'] | null
   disabled?: boolean
 }
 
@@ -42,7 +40,7 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
             class="flex gap-2"
             checked={field.input as boolean}
             onChange={(checked) => field.onInput(checked as TFieldInput)}
-            validationState={props.errors ? 'invalid' : 'valid'}
+            validationState={field.errors ? 'invalid' : 'valid'}
             disabled={props.disabled}
           >
             <CheckboxInput />
@@ -53,8 +51,8 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
                 <CheckboxDescription>{props.description}</CheckboxDescription>
               </Show>
             </div>
-            <Show when={props.errors}>
-              <div class="text-destructive text-xs">{props.errors?.[0]}</div>
+            <Show when={field.errors}>
+              <div class="text-destructive text-xs">{field.errors?.[0]}</div>
             </Show>
           </Checkbox>
         </div>

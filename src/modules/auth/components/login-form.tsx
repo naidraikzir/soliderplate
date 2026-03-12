@@ -1,4 +1,4 @@
-import { createForm, Field, Form } from '@formisch/solid'
+import { createForm, Form } from '@formisch/solid'
 
 import { FormInput } from '@/components/forms/form-input'
 import { Button } from '@/components/ui/button'
@@ -19,29 +19,14 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
 
   return (
     <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-xs p-2">
-      <Field of={loginForm} path={['username']}>
-        {(field) => (
-          <FormInput
-            {...field.props}
-            label="Username"
-            placeholder="Username..."
-            onChange={field.onInput}
-            errors={field.errors}
-          />
-        )}
-      </Field>
-      <Field of={loginForm} path={['password']}>
-        {(field) => (
-          <FormInput
-            {...field.props}
-            type="password"
-            label="Password"
-            placeholder="********"
-            onChange={field.onInput}
-            errors={field.errors}
-          />
-        )}
-      </Field>
+      <FormInput of={loginForm} path={['username']} label="Username" placeholder="Username..." />
+      <FormInput
+        of={loginForm}
+        path={['password']}
+        type="password"
+        label="Password"
+        placeholder="********"
+      />
       <Button type="submit" class="justify-self-end">
         Login
       </Button>
