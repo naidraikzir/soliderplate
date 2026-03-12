@@ -6,8 +6,7 @@ import {
   type Schema,
   type ValidPath,
 } from '@formisch/solid'
-import type { JSX } from 'solid-js'
-import { For, Show } from 'solid-js'
+import { For, Show, type JSX } from 'solid-js'
 import * as v from 'valibot'
 
 import { Badge } from '../ui/badge'

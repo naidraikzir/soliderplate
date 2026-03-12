@@ -1,5 +1,4 @@
-import { createForm, Field, Form, getInput, getAllErrors, reset } from '@formisch/solid'
-import dayjs from 'dayjs'
+import { createForm, Form, getInput, getAllErrors, reset } from '@formisch/solid'
 import { createSignal } from 'solid-js'
 
 import {
@@ -111,37 +110,15 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <Field of={form} path={['date']}>
-        {(field) => (
-          <FormDatePicker
-            {...field.props}
-            label="Date Picker"
-            value={field.input ? dayjs(field.input).toDate() : null}
-            onChange={(v) => field.onInput(dayjs(v).format())}
-            errors={field.errors}
-            disabled={disabled()}
-          />
-        )}
-      </Field>
+      <FormDatePicker of={form} path={['date']} label="Date Picker" disabled={disabled()} />
 
-      <Field of={form} path={['date_range']}>
-        {(field) => (
-          <FormDatePicker
-            {...field.props}
-            label="Date Range Picker Object"
-            value={[
-              field.input.from ? dayjs(field.input.from).toDate() : null,
-              field.input.to ? dayjs(field.input.to).toDate() : null,
-            ]}
-            onChange={(v) =>
-              field.onInput({ from: dayjs(v[0]).format(), to: dayjs(v[1]).format() })
-            }
-            errors={field.errors}
-            disabled={disabled()}
-            range
-          />
-        )}
-      </Field>
+      <FormDatePicker
+        of={form}
+        path={['date_range']}
+        label="Date Range Picker"
+        disabled={disabled()}
+        multiple
+      />
 
       <div class="md:col-span-2 flex justify-end gap-2">
         <ToggleButton variant="outline" size="sm" pressed={disabled()} onChange={setDisabled}>
@@ -157,10 +134,10 @@ export function FormExample() {
         </Button>
       </div>
 
-      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg text-xs">
+      <pre class="overflow-x-auto bg-black text-white p-2 rounded-lg text-xs">
         {JSON.stringify(getInput(form), null, 2)}
       </pre>
-      <pre class="overflow-x-auto bg-foreground text-background p-2 rounded-lg text-xs">
+      <pre class="overflow-x-auto bg-black text-white p-2 rounded-lg text-xs">
         {JSON.stringify(getAllErrors(form), null, 2)}
       </pre>
     </Form>
