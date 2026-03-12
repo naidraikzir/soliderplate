@@ -1,6 +1,6 @@
 import { createForm, Field, Form, getInput, getAllErrors, reset } from '@formisch/solid'
 import dayjs from 'dayjs'
-import { createSignal, For } from 'solid-js'
+import { createSignal, For, Show } from 'solid-js'
 
 import { FormCheckbox } from '@/components/forms/form-checkbox'
 import { FormDatePicker } from '@/components/forms/form-datepicker'
@@ -145,11 +145,13 @@ export function FormExample() {
                           : field.input.filter((v) => v !== option.value),
                       )
                     }
-                    errors={field.errors}
                     disabled={disabled()}
                   />
                 )}
               </For>
+              <Show when={field.errors}>
+                <div class="text-destructive text-xs">{field.errors?.[0]}</div>
+              </Show>
             </div>
           </div>
         )}
