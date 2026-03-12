@@ -23,7 +23,6 @@
     "@tanstack/solid-router": "^1.166.7",
     "cva": "^1.0.0-beta.4",
     "dayjs": "^1.11.20",
-    "lucide-solid": "^0.577.0",
     "radashi": "^12.7.2",
     "solid-js": "^1.9.11",
     "tailwind-merge": "^3.5.0",
@@ -33,6 +32,8 @@
     "xior": "^0.8.3"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.97",
+    "@iconify/tailwind4": "^1.2.3",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/router-plugin": "^1.166.7",
     "@types/node": "^25.5.0",

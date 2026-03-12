@@ -1,6 +1,5 @@
 import type { FieldStore } from '@formisch/solid'
 import dayjs from 'dayjs'
-import { CalendarIcon } from 'lucide-solid'
 import {
   createEffect,
   createSignal,
@@ -105,7 +104,7 @@ function SingleDatePicker(props: ISingleProps & { id: string }) {
                 data-invalid={props.errors}
                 {...triggerProps}
               >
-                <CalendarIcon class="text-muted-foreground" />
+                <span class="icon-[lucide--calendar] text-muted-foreground text-base"></span>
                 <div class="grow">
                   <Show
                     when={calendar.value}
@@ -207,7 +206,7 @@ function RangeDatePicker(props: IRangeProps & { id: string }) {
                 data-invalid={props.errors}
                 {...triggerProps}
               >
-                <CalendarIcon class="text-muted-foreground" />
+                <span class="icon-[lucide--calendar] text-muted-foreground text-base"></span>
                 <span class="grow overflow-x-hidden">
                   <Show
                     when={calendar.value.from && calendar.value.to}

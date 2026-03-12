@@ -3,6 +3,8 @@
 @import '@fontsource-variable/bricolage-grotesque';
 @import '@fontsource-variable/fraunces';
 
+@plugin '@iconify/tailwind4';
+
 @custom-variant dark (&:is([data-kb-theme="dark"] *));
 
 @theme inline {

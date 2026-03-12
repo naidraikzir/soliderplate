@@ -2,13 +2,15 @@ import { createForm, Field, Form, getInput, getAllErrors, reset } from '@formisc
 import dayjs from 'dayjs'
 import { createSignal } from 'solid-js'
 
-import { FormCheckbox } from '@/components/forms/form-checkbox'
-import { FormCheckboxGroup } from '@/components/forms/form-checkbox-group'
-import { FormDatePicker } from '@/components/forms/form-datepicker'
-import { FormInput } from '@/components/forms/form-input'
-import { FormRadio } from '@/components/forms/form-radio'
-import { FormSelect } from '@/components/forms/form-select'
-import { FormTextarea } from '@/components/forms/form-textarea'
+import {
+  FormCheckbox,
+  FormCheckboxGroup,
+  FormDatePicker,
+  FormInput,
+  FormRadio,
+  FormSelect,
+  FormTextarea,
+} from '@/components/forms'
 import { Button } from '@/components/ui/button'
 import { ToggleButton } from '@/components/ui/toggle-button'
 
