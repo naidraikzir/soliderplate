@@ -20,7 +20,7 @@ function RouteComponent() {
 
   function onLogout() {
     logout()
-    navigate({ to: '/login' })
+    void navigate({ to: '/login' })
   }
 
   return (

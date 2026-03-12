@@ -1,8 +1,9 @@
 import { createForm, Field, Form, getInput, getAllErrors, reset } from '@formisch/solid'
 import dayjs from 'dayjs'
-import { createSignal, For, Show } from 'solid-js'
+import { createSignal } from 'solid-js'
 
 import { FormCheckbox } from '@/components/forms/form-checkbox'
+import { FormCheckboxGroup } from '@/components/forms/form-checkbox-group'
 import { FormDatePicker } from '@/components/forms/form-datepicker'
 import { FormInput } from '@/components/forms/form-input'
 import { FormRadio } from '@/components/forms/form-radio'
@@ -37,12 +38,10 @@ export function FormExample() {
 
   function onSubmit(_values: TExampleSchema) {}
 
-  const options = [
-    { label: 'Option 1', value: 'option-1' },
-    { label: 'Option 2', value: 'option-2' },
-    { label: 'Option 3', value: 'option-3' },
-    { label: 'Option 4', value: 'option-4' },
-  ]
+  const options = Array.from({ length: 4 }, (_, i) => ({
+    label: `Option ${i + 1}`,
+    value: `option-${i + 1}`,
+  }))
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-md">
@@ -122,40 +121,13 @@ export function FormExample() {
         )}
       </Field>
 
-      <Field of={form} path={['checkbox_group']}>
-        {(field) => (
-          <div class="grid gap-3">
-            <span
-              class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
-              data-invalid={field.errors}
-              data-disabled={disabled() ? '' : undefined}
-            >
-              Checkbox Group
-            </span>
-            <div class="flex gap-3 gap-x-4 gap-y-2 flex-col">
-              <For each={options}>
-                {(option) => (
-                  <FormCheckbox
-                    label={option.label}
-                    checked={field.input?.includes(option.value)}
-                    onChange={(checked) =>
-                      field.onInput(
-                        checked
-                          ? [...field.input, option.value]
-                          : field.input.filter((v) => v !== option.value),
-                      )
-                    }
-                    disabled={disabled()}
-                  />
-                )}
-              </For>
-              <Show when={field.errors}>
-                <div class="text-destructive text-xs">{field.errors?.[0]}</div>
-              </Show>
-            </div>
-          </div>
-        )}
-      </Field>
+      <FormCheckboxGroup
+        of={form}
+        path={['checkbox_group']}
+        label="Checkbox Group"
+        options={options}
+        disabled={disabled()}
+      />
 
       <Field of={form} path={['radio']}>
         {(field) => (

@@ -1,7 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 @import '@fontsource-variable/bricolage-grotesque';
-@import "@fontsource-variable/fraunces";
+@import '@fontsource-variable/fraunces';
 
 @custom-variant dark (&:is([data-kb-theme="dark"] *));
 
@@ -96,7 +96,7 @@
   --default-font-family: 'Fraunces Variable', var(--font-serif);
 }
 
-[data-kb-theme="dark"] {
+[data-kb-theme='dark'] {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
