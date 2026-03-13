@@ -60,10 +60,7 @@ export function FormDatePicker<
     callback: () => void,
   ) {
     setRange([newRange.from, newRange.to])
-
-    if (newRange.from && newRange.to) {
-      callback()
-    }
+    callback()
   }
 
   return (
@@ -243,7 +240,7 @@ function Trigger(props: {
           {...triggerProps}
         >
           <span class="icon-[lucide--calendar] text-muted-foreground text-base"></span>
-          <div class="grow">
+          <div class="grow mt-0.5">
             <Show
               when={props.placeholderShown}
               fallback={<span class="text-muted-foreground">{props.placeholder}</span>}
