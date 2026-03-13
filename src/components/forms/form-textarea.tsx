@@ -1,8 +1,7 @@
 import {
   Field,
+  type FieldStore,
   type FormStore,
-  type PartialValues,
-  type PathValue,
   type RequiredPath,
   type Schema,
   type ValidPath,
@@ -26,18 +25,21 @@ type TFormTextareaProps<TSchema extends Schema, TFieldPath extends RequiredPath>
   disabled?: boolean
 }
 
+type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+  TSchema,
+  TFieldPath
+>['input']
+
 export function FormTextarea<TSchema extends Schema, TFieldPath extends RequiredPath>(
   props: TFormTextareaProps<TSchema, TFieldPath>,
 ) {
-  type TFieldInput = PartialValues<PathValue<v.InferInput<TSchema>, TFieldPath>>
-
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
         <div class={props.class}>
           <TextField
             value={field.input as string}
-            onChange={(value) => field.onInput(value as TFieldInput)}
+            onChange={(value) => field.onInput(value as TFieldInput<TSchema, TFieldPath>)}
             validationState={field.errors ? 'invalid' : 'valid'}
             disabled={props.disabled}
           >

@@ -1,8 +1,7 @@
 import {
   Field,
+  type FieldStore,
   type FormStore,
-  type PartialValues,
-  type PathValue,
   type RequiredPath,
   type Schema,
   type ValidPath,
@@ -40,11 +39,14 @@ type TFormRadioProps<TSchema extends Schema, TFieldPath extends RequiredPath> = 
   disabled?: boolean
 }
 
+type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+  TSchema,
+  TFieldPath
+>['input']
+
 export function FormRadio<TSchema extends Schema, TFieldPath extends RequiredPath>(
   props: TFormRadioProps<TSchema, TFieldPath>,
 ) {
-  type TFieldInput = PartialValues<PathValue<v.InferInput<TSchema>, TFieldPath>>
-
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
@@ -52,7 +54,7 @@ export function FormRadio<TSchema extends Schema, TFieldPath extends RequiredPat
           <RadioGroup
             orientation={props.orientation}
             value={props.options.find((o) => o.value === field.input)?.value}
-            onChange={(value) => field.onInput(value as TFieldInput)}
+            onChange={(value) => field.onInput(value as TFieldInput<TSchema, TFieldPath>)}
             validationState={field.errors ? 'invalid' : 'valid'}
             disabled={props.disabled}
           >

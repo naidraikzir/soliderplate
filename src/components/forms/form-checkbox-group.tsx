@@ -1,8 +1,7 @@
 import {
   Field,
+  type FieldStore,
   type FormStore,
-  type PartialValues,
-  type PathValue,
   type RequiredPath,
   type Schema,
   type ValidPath,
@@ -27,11 +26,14 @@ type TFormCheckboxGroupProps<TSchema extends Schema, TFieldPath extends Required
   disabled?: boolean
 }
 
+type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+  TSchema,
+  TFieldPath
+>['input']
+
 export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends RequiredPath>(
   props: TFormCheckboxGroupProps<TSchema, TFieldPath>,
 ) {
-  type TFieldInput = PartialValues<PathValue<v.InferInput<TSchema>, TFieldPath>>
-
   return (
     <Field of={props.of} path={props.path}>
       {(field) => {
@@ -41,7 +43,7 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
         }
 
         function setArrayValue(arr: string[]) {
-          field.onInput(arr as TFieldInput)
+          field.onInput(arr as TFieldInput<TSchema, TFieldPath>)
         }
 
         function handleChange(checked: boolean, value: string) {

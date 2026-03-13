@@ -37,7 +37,7 @@ type TFormDatePickerProps<
   disabled?: boolean
 }
 
-type FieldInputType<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
@@ -100,7 +100,7 @@ export function FormDatePicker<
                     value={field.input ? new Date(field.input as string) : null}
                     onValueChange={(value) =>
                       field.onInput(
-                        (value?.toISOString() ?? '') as FieldInputType<TSchema, TFieldPath>,
+                        (value?.toISOString() ?? '') as TFieldInput<TSchema, TFieldPath>,
                       )
                     }
                   >
@@ -150,7 +150,7 @@ export function FormDatePicker<
                       field.onInput({
                         from: from()?.toISOString() ?? '',
                         to: to()?.toISOString() ?? '',
-                      } as FieldInputType<TSchema, TFieldPath>),
+                      } as TFieldInput<TSchema, TFieldPath>),
                     )
                   }
                 >

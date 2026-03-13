@@ -47,7 +47,7 @@ type TFormSelectProps<
   disabled?: boolean
 }
 
-type FieldInputType<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
@@ -74,7 +74,7 @@ export function FormSelect<
               placeholder={props.placeholder}
               value={props.options.find((o) => o.value === field.input) ?? null}
               onChange={(v: TOption | null) =>
-                field.onInput((v?.value ?? '') as FieldInputType<TSchema, TFieldPath>)
+                field.onInput((v?.value ?? '') as TFieldInput<TSchema, TFieldPath>)
               }
               onInputChange={props.onInputChange}
               validationState={field.errors ? 'invalid' : 'valid'}
@@ -114,7 +114,7 @@ export function FormSelect<
             value={props.options.filter((o) => (field.input as string[]).includes(o.value))}
             onChange={(v: TOption[] | null) => {
               const values = v?.map((o) => o.value) ?? []
-              field.onInput(values as FieldInputType<TSchema, TFieldPath>)
+              field.onInput(values as TFieldInput<TSchema, TFieldPath>)
             }}
             onInputChange={props.onInputChange}
             validationState={field.errors ? 'invalid' : 'valid'}
