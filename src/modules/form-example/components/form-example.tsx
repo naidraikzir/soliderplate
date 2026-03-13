@@ -6,7 +6,7 @@ import {
   FormCheckboxGroup,
   FormDatePicker,
   FormInput,
-  FormRadio,
+  FormRadioGroup,
   FormSelect,
   FormTextarea,
 } from '@/components/forms'
@@ -101,7 +101,7 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <FormRadio
+      <FormRadioGroup
         of={form}
         path={['radio']}
         orientation="vertical"

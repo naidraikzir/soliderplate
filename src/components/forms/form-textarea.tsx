@@ -44,7 +44,7 @@ export function FormTextarea<TSchema extends Schema, TFieldPath extends Required
             disabled={props.disabled}
           >
             <TextFieldLabel>{props.label}</TextFieldLabel>
-            <TextFieldTextArea placeholder={props.placeholder} />
+            <TextFieldTextArea placeholder={props.placeholder} autoResize />
             <Show when={field.errors}>
               <TextFieldErrorMessage class="text-xs data-disabled:opacity-50">
                 {field.errors?.[0]}

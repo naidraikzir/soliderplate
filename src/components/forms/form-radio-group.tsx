@@ -44,7 +44,7 @@ type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = Fiel
   TFieldPath
 >['input']
 
-export function FormRadio<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormRadioGroup<TSchema extends Schema, TFieldPath extends RequiredPath>(
   props: TFormRadioProps<TSchema, TFieldPath>,
 ) {
   return (
