@@ -15,6 +15,11 @@ import { ToggleButton } from '@/components/ui/toggle-button'
 
 import { exampleSchema, type TExampleSchema } from '../schema'
 
+const options = Array.from({ length: 4 }, (_, i) => ({
+  label: `Option ${i + 1}`,
+  value: `option-${i + 1}`,
+}))
+
 export function FormExample() {
   const [disabled, setDisabled] = createSignal(false)
 
@@ -38,11 +43,6 @@ export function FormExample() {
   })
 
   function onSubmit(_values: TExampleSchema) {}
-
-  const options = Array.from({ length: 4 }, (_, i) => ({
-    label: `Option ${i + 1}`,
-    value: `option-${i + 1}`,
-  }))
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md">
