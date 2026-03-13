@@ -117,7 +117,7 @@ export function FormExample() {
         path={['date_range']}
         label="Date Range Picker"
         disabled={disabled()}
-        multiple
+        range
       />
 
       <div class="md:col-span-2 flex justify-end gap-2">

@@ -44,7 +44,9 @@ export function FormTextarea<TSchema extends Schema, TFieldPath extends Required
             <TextFieldLabel>{props.label}</TextFieldLabel>
             <TextFieldTextArea placeholder={props.placeholder} />
             <Show when={field.errors}>
-              <TextFieldErrorMessage class="text-xs">{field.errors?.[0]}</TextFieldErrorMessage>
+              <TextFieldErrorMessage class="text-xs data-disabled:opacity-50">
+                {field.errors?.[0]}
+              </TextFieldErrorMessage>
             </Show>
           </TextField>
         </div>

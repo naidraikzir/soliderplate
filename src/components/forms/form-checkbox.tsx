@@ -52,7 +52,9 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
               </Show>
             </div>
             <Show when={field.errors}>
-              <div class="text-destructive text-xs">{field.errors?.[0]}</div>
+              <div class="text-destructive text-xs data-disabled:opacity-50">
+                {field.errors?.[0]}
+              </div>
             </Show>
           </Checkbox>
         </div>

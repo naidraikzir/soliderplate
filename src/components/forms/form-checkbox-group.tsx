@@ -79,7 +79,12 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
                 )}
               </For>
               <Show when={field.errors}>
-                <div class="text-destructive text-xs">{field.errors?.[0]}</div>
+                <div
+                  class="text-destructive text-xs data-disabled:opacity-50"
+                  data-disabled={props.disabled ? '' : undefined}
+                >
+                  {field.errors?.[0]}
+                </div>
               </Show>
             </div>
           </div>
