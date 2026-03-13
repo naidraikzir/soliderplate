@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
+    "dev": "vp dev",
+    "build": "tsc -b && vp build",
+    "preview": "vp preview",
     "tsc": "tsc -b",
-    "lint": "oxlint --type-aware",
-    "format": "oxfmt",
-    "prepare": "husky"
+    "lint": "vp lint --type-aware",
+    "format": "vp fmt",
+    "prepare": "vp config"
   },
   "dependencies": {
     "@corvu/calendar": "^0.1.2",
@@ -37,23 +37,13 @@
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/router-plugin": "^1.166.7",
     "@types/node": "^25.5.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.3.3",
-    "oxfmt": "^0.40.0",
-    "oxlint": "^1.55.0",
-    "oxlint-tsgolint": "^0.16.0",
     "solid-devtools": "^0.34.5",
     "typescript": "^5.9.3",
     "vite": "^8.0.0",
-    "vite-plugin-solid": "^2.11.10"
+    "vite-plugin-solid": "^2.11.10",
+    "vite-plus": "^0.1.11"
   },
   "overrides": {
     "cva": "$cva"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "oxlint --type-aware",
-      "oxfmt --no-error-on-unmatched-pattern"
-    ]
   }
 }
