@@ -160,6 +160,7 @@ export function FormSelect<
                     )}
                   </For>
                   <ComboboxInput class="flex-1" />
+                  <ComboboxTrigger />
                 </div>
               )}
             </ComboboxControl>
