@@ -29,6 +29,7 @@ function RouteComponent() {
     <main class="grid gap-2 p-2">
       <header class="flex items-center gap-4">
         <Button onClick={onLogout}>Logout</Button>
+        <Link to="/">/</Link>
         <Link to="/form-example">Form Example</Link>
         <Button variant="ghost" size="icon" onClick={toggleColorMode}>
           <span class="[html[data-kb-theme=light]_&]:icon-[lucide--sun] [html[data-kb-theme=dark]_&]:icon-[lucide--moon]" />

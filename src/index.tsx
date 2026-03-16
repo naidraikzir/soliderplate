@@ -9,7 +9,7 @@ import { routeTree } from './routeTree.gen.ts'
 
 const root = document.getElementById('root')
 
-const router = createRouter({ routeTree })
+const router = createRouter({ routeTree, defaultViewTransition: true })
 
 render(() => {
   const storageManager = cookieStorageManagerSSR(document.cookie)
