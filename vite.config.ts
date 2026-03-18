@@ -25,7 +25,7 @@ export default defineConfig({
       autoname: true,
     }),
     solid(),
-  ],
+  ] as const,
   resolve: {
     tsconfigPaths: true,
   },
