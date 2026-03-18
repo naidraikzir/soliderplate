@@ -52,6 +52,7 @@ export function FormDatePicker<
   const [errors, setErrors] = createSignal<string[]>()
 
   const [range, setRange] = createSignal<[Date | null, Date | null]>([null, null])
+  const [previousRange, setPreviousRange] = createSignal<[Date | null, Date | null]>([null, null])
   const from = () => range()[0]
   const to = () => range()[1]
 
@@ -60,6 +61,9 @@ export function FormDatePicker<
     callback: () => void,
   ) {
     setRange([newRange.from, newRange.to])
+    if (newRange.from && newRange.to) {
+      setPreviousRange([newRange.from, newRange.to])
+    }
     callback()
   }
 
@@ -82,7 +86,12 @@ export function FormDatePicker<
             createEffect(() => {
               const value = field.input as { from?: string; to?: string } | undefined
               if (value?.from && value?.to) {
-                setRange([new Date(value.from), new Date(value.to)])
+                const newRange = [new Date(value.from), new Date(value.to)] as [
+                  Date | null,
+                  Date | null,
+                ]
+                setRange(newRange)
+                setPreviousRange(newRange)
               } else if (!value || (!value.from && !value.to)) {
                 setRange([null, null])
               }
@@ -152,7 +161,18 @@ export function FormDatePicker<
                   }
                 >
                   {(calendar) => (
-                    <Popover>
+                    <Popover
+                      onOpenChange={(open) => {
+                        if (!open && from() && !to()) {
+                          const prev = previousRange()
+                          setRange(prev)
+                          field.onInput({
+                            from: prev[0]?.toISOString() ?? '',
+                            to: prev[1]?.toISOString() ?? '',
+                          } as TFieldInput<TSchema, TFieldPath>)
+                        }
+                      }}
+                    >
                       <Trigger
                         id={id}
                         disabled={props.disabled}
