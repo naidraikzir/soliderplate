@@ -30,6 +30,7 @@ Learn more about deploying your application with the [documentations](https://vi
 ## Dependencies
 
 - [Tanstack Router](https://tanstack.com/router)
+- [Tanstack DB](https://tanstack.com/db)
 - [Shadcn](https://shadcn-solid.netlify.app)
 - [Formisch](https://formisch.dev/solid/guides)
 - [Valibot](https://valibot.dev)
