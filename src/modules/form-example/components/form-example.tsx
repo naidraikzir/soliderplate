@@ -56,6 +56,15 @@ export function FormExample() {
         disabled={disabled()}
       />
 
+      <FormTextarea
+        of={form}
+        path={['textarea']}
+        class="md:col-span-2"
+        label="Textarea"
+        placeholder="Textarea..."
+        disabled={disabled()}
+      />
+
       <FormCheckbox
         of={form}
         path={['checkbox']}
@@ -65,12 +74,20 @@ export function FormExample() {
         disabled={disabled()}
       />
 
-      <FormTextarea
+      <FormCheckboxGroup
         of={form}
-        path={['textarea']}
-        class="md:col-span-2"
-        label="Textarea"
-        placeholder="Textarea..."
+        path={['checkbox_group']}
+        label="Checkbox Group"
+        options={options}
+        disabled={disabled()}
+      />
+
+      <FormRadioGroup
+        of={form}
+        path={['radio']}
+        orientation="vertical"
+        label="Radio"
+        options={options}
         disabled={disabled()}
       />
 
@@ -91,23 +108,6 @@ export function FormExample() {
         options={options}
         disabled={disabled()}
         multiple
-      />
-
-      <FormCheckboxGroup
-        of={form}
-        path={['checkbox_group']}
-        label="Checkbox Group"
-        options={options}
-        disabled={disabled()}
-      />
-
-      <FormRadioGroup
-        of={form}
-        path={['radio']}
-        orientation="vertical"
-        label="Radio"
-        options={options}
-        disabled={disabled()}
       />
 
       <FormDatePicker of={form} path={['date']} label="Date Picker" disabled={disabled()} />
