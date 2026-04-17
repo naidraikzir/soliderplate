@@ -254,7 +254,7 @@ function Trigger(props: {
         <Button
           variant="outline"
           id={props.id}
-          class="justify-between font-normal text-xs text-left data-disabled:opacity-50 data-invalid:border-destructive"
+          class="justify-between font-normal text-xs text-left data-disabled:opacity-50 data-invalid:border-destructive dark:data-invalid:border-destructive"
           data-disabled={props.disabled ? '' : undefined}
           data-invalid={props.invalid}
           {...triggerProps}

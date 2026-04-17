@@ -10,6 +10,7 @@ import {
   FormSelect,
   FormTextarea,
 } from '@/components/forms'
+import { FormDropzone } from '@/components/forms/form-dropzone'
 import { Button } from '@/components/ui/button'
 import { ToggleButton } from '@/components/ui/toggle-button'
 
@@ -37,6 +38,8 @@ export function FormExample() {
         from: '',
         to: '',
       },
+      dropzone: '',
+      dropzone_multi: [],
     },
     schema: exampleSchema,
     validate: 'submit',
@@ -118,6 +121,24 @@ export function FormExample() {
         label="Date Range Picker"
         disabled={disabled()}
         range
+      />
+
+      <FormDropzone
+        of={form}
+        path={['dropzone']}
+        label="Dropzone"
+        class="md:col-span-2"
+        disabled={disabled()}
+      />
+
+      <FormDropzone
+        of={form}
+        path={['dropzone_multi']}
+        label="Dropzone Multiple"
+        placeholder="Drop files here..."
+        class="md:col-span-2"
+        disabled={disabled()}
+        multiple
       />
 
       <div class="md:col-span-2 flex justify-end gap-2">

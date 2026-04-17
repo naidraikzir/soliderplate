@@ -35,6 +35,11 @@ export const exampleSchema = object({
     }),
     check((value) => !!(value.from && value.to), 'Date range is required'),
   ),
+  dropzone: pipe(string('Dropzone is required'), minLength(1, 'Dropzone is required')),
+  dropzone_multi: pipe(
+    array(string('Dropzone Multi is required')),
+    minLength(1, 'Dropzone is required'),
+  ),
 })
 
 export type TExampleSchema = InferOutput<typeof exampleSchema>

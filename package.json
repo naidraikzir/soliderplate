@@ -18,9 +18,9 @@
     "@fontsource-variable/fraunces": "^5.2.9",
     "@formisch/solid": "^0.9.4",
     "@kobalte/core": "^0.13.11",
-    "@tanstack/solid-db": "^0.2.18",
-    "@tanstack/solid-query": "^5.97.0",
-    "@tanstack/solid-router": "^1.168.9",
+    "@tanstack/solid-db": "^0.2.19",
+    "@tanstack/solid-query": "^5.99.0",
+    "@tanstack/solid-router": "^1.168.20",
     "cva": "^1.0.0-beta.4",
     "dayjs": "^1.11.20",
     "radashi": "^12.7.2",
@@ -35,13 +35,13 @@
     "@iconify-json/lucide": "^1.2.102",
     "@iconify/tailwind4": "^1.2.3",
     "@tailwindcss/vite": "^4.2.2",
-    "@tanstack/router-plugin": "^1.167.12",
+    "@tanstack/router-plugin": "^1.167.22",
     "@types/node": "^25.6.0",
     "solid-devtools": "^0.34.5",
-    "typescript": "^6.0.2",
+    "typescript": "^6.0.3",
     "vite": "^8.0.8",
     "vite-plugin-solid": "^2.11.12",
-    "vite-plus": "^0.1.16"
+    "vite-plus": "^0.1.18"
   },
   "overrides": {
     "cva": "^1.0.0-beta.4"
