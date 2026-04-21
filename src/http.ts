@@ -1,5 +1,5 @@
-import xior from 'xior'
+import ky from 'ky'
 
-export const api = xior.create({
-  baseURL: import.meta.env.VITE_API_URL,
+export const http = ky.create({
+  baseUrl: import.meta.env.VITE_API_URL,
 })
