@@ -7,7 +7,7 @@ import {
   type ValidPath,
 } from '@formisch/solid'
 import dayjs from 'dayjs'
-import { createEffect, createSignal, createUniqueId, Index, type JSX, Show } from 'solid-js'
+import { createSignal, createUniqueId, Index, type JSX, Show } from 'solid-js'
 import * as v from 'valibot'
 
 import { Button } from '@/components/ui/button'
@@ -51,6 +51,7 @@ export function FormDatePicker<
   const id = `datepicker-${createUniqueId()}`
   const [errors, setErrors] = createSignal<string[]>()
 
+  const [isOpen, setIsOpen] = createSignal(false)
   const [range, setRange] = createSignal<[Date | null, Date | null]>([null, null])
   const [previousRange, setPreviousRange] = createSignal<[Date | null, Date | null]>([null, null])
   const from = () => range()[0]
@@ -63,6 +64,7 @@ export function FormDatePicker<
     setRange([newRange.from, newRange.to])
     if (newRange.from && newRange.to) {
       setPreviousRange([newRange.from, newRange.to])
+      setIsOpen(false)
     }
     callback()
   }
@@ -83,20 +85,6 @@ export function FormDatePicker<
           {(field) => {
             setErrors(field.errors ?? undefined)
 
-            createEffect(() => {
-              const value = field.input as { from?: string; to?: string } | undefined
-              if (value?.from && value?.to) {
-                const newRange = [new Date(value.from), new Date(value.to)] as [
-                  Date | null,
-                  Date | null,
-                ]
-                setRange(newRange)
-                setPreviousRange(newRange)
-              } else if (!value || (!value.from && !value.to)) {
-                setRange([null, null])
-              }
-            })
-
             return (
               <Show
                 when={props.range}
@@ -104,14 +92,15 @@ export function FormDatePicker<
                   <Calendar
                     mode="single"
                     value={field.input ? new Date(field.input as string) : null}
-                    onValueChange={(value) =>
+                    onValueChange={(value) => {
                       field.onInput(
                         (value?.toISOString() ?? '') as TFieldInput<TSchema, TFieldPath>,
                       )
-                    }
+                      setIsOpen(false)
+                    }}
                   >
                     {(calendar) => (
-                      <Popover>
+                      <Popover open={isOpen()} onOpenChange={setIsOpen}>
                         <Trigger
                           id={id}
                           disabled={props.disabled}
@@ -162,6 +151,7 @@ export function FormDatePicker<
                 >
                   {(calendar) => (
                     <Popover
+                      open={isOpen()}
                       onOpenChange={(open) => {
                         if (!open && from() && !to()) {
                           const prev = previousRange()
@@ -170,6 +160,8 @@ export function FormDatePicker<
                             from: prev[0]?.toISOString() ?? '',
                             to: prev[1]?.toISOString() ?? '',
                           } as TFieldInput<TSchema, TFieldPath>)
+                        } else {
+                          setIsOpen(open)
                         }
                       }}
                     >
