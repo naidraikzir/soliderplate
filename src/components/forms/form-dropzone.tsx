@@ -34,7 +34,6 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
   props: TFormInputProps<TSchema, TFieldPath>,
 ) {
   const id = `dropzone-${createUniqueId()}`
-  let fileInputRef: HTMLInputElement | undefined
 
   const [created, setCreated] = createSignal<TCreated[]>([])
 
@@ -65,7 +64,6 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
           const input = field.input
           if (!input || (Array.isArray(input) && input.length === 0)) {
             setCreated([])
-            fileInputRef!.value = ''
           }
         })
 
@@ -93,7 +91,6 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
             >
               <div>{props.placeholder || 'Drop'}</div>
               <input
-                ref={fileInputRef}
                 type="file"
                 id={id}
                 class="absolute inset-0 opacity-0 z-1 cursor-pointer"
@@ -101,12 +98,18 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
                   if (!e.target.files?.length) return
 
                   const base64Strings = await createBase64Strings(e.target.files)
-                  setCreated(base64Strings || [])
-                  field.onInput(
-                    (props.multiple
-                      ? base64Strings?.map((s) => s.base64)
-                      : base64Strings?.[0].base64) as TFieldDropzone<TSchema, TFieldPath>,
-                  )
+                  if (!base64Strings) return
+
+                  if (props.multiple) {
+                    const current = field.input as string[] | undefined
+                    const newFiles = [...(current || []), ...base64Strings.map((s) => s.base64)]
+                    setCreated((prev) => [...prev, ...base64Strings])
+                    field.onInput(newFiles as TFieldDropzone<TSchema, TFieldPath>)
+                  } else {
+                    setCreated(base64Strings)
+                    field.onInput(base64Strings[0].base64 as TFieldDropzone<TSchema, TFieldPath>)
+                  }
+
                   e.target.value = ''
                 }}
                 multiple={props.multiple}
@@ -135,8 +138,6 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
                       } else {
                         field.onInput('' as TFieldDropzone<TSchema, TFieldPath>)
                       }
-
-                      fileInputRef!.value = ''
                     }}
                   >
                     <span class="icon-[lucide--x] text-destructive text-base"></span>

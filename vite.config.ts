@@ -10,7 +10,7 @@ export default defineConfig({
     semi: false,
     singleQuote: true,
     experimentalSortImports: {},
-    ignorePatterns: ['src/components/ui/**'],
+    ignorePatterns: ['src/components/ui/**', 'src/routeTree.gen.ts'],
   },
   staged: {
     '*.{ts,tsx}': ['vp lint --type-aware', 'vp fmt --no-error-on-unmatched-pattern'],
