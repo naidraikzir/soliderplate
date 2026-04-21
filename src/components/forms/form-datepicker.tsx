@@ -7,7 +7,7 @@ import {
   type ValidPath,
 } from '@formisch/solid'
 import dayjs from 'dayjs'
-import { createSignal, createUniqueId, Index, type JSX, Show } from 'solid-js'
+import { createMemo, createSignal, createUniqueId, Index, type JSX, Show } from 'solid-js'
 import * as v from 'valibot'
 
 import { Button } from '@/components/ui/button'
@@ -49,7 +49,6 @@ export function FormDatePicker<
 >(props: TFormDatePickerProps<TSchema, TFieldPath, TRange>) {
   const mergedFormat = () => props.format || 'DD/MM/YYYY'
   const id = `datepicker-${createUniqueId()}`
-  const [errors, setErrors] = createSignal<string[]>()
 
   const [isOpen, setIsOpen] = createSignal(false)
   const [range, setRange] = createSignal<[Date | null, Date | null]>([null, null])
@@ -71,27 +70,33 @@ export function FormDatePicker<
 
   return (
     <div class={props.class}>
-      <div class="grid w-full gap-2">
-        <label
-          for={id}
-          class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
-          data-disabled={props.disabled ? '' : undefined}
-          data-invalid={errors()}
-        >
-          {props.label}
-        </label>
+      <Field of={props.of} path={props.path}>
+        {(field) => {
+          const value = createMemo(() =>
+            props.range
+              ? { from: from(), to: to() }
+              : field.input
+                ? new Date(field.input as string)
+                : null,
+          )
 
-        <Field of={props.of} path={props.path}>
-          {(field) => {
-            setErrors(field.errors ?? undefined)
+          return (
+            <div class="grid w-full gap-2">
+              <label
+                for={id}
+                class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
+                data-disabled={props.disabled ? '' : undefined}
+                data-invalid={field.errors}
+              >
+                {props.label}
+              </label>
 
-            return (
               <Show
                 when={props.range}
                 fallback={
                   <Calendar
                     mode="single"
-                    value={field.input ? new Date(field.input as string) : null}
+                    value={value() as Date | null}
                     onValueChange={(value) => {
                       field.onInput(
                         (value?.toISOString() ?? '') as TFieldInput<TSchema, TFieldPath>,
@@ -104,7 +109,7 @@ export function FormDatePicker<
                         <Trigger
                           id={id}
                           disabled={props.disabled}
-                          invalid={errors()}
+                          invalid={field.errors || undefined}
                           placeholder={props.placeholder || mergedFormat()}
                           placeholderShown={!!calendar.value}
                           value={dayjs(calendar.value).format(mergedFormat())}
@@ -139,7 +144,7 @@ export function FormDatePicker<
                 <Calendar
                   mode="range"
                   numberOfMonths={2}
-                  value={{ from: from(), to: to() }}
+                  value={value() as { from: Date | null; to: Date | null }}
                   onValueChange={(value) =>
                     handleRangeChange(value, () =>
                       field.onInput({
@@ -168,7 +173,7 @@ export function FormDatePicker<
                       <Trigger
                         id={id}
                         disabled={props.disabled}
-                        invalid={errors()}
+                        invalid={field.errors || undefined}
                         placeholder={props.placeholder || mergedFormat()}
                         placeholderShown={!!(calendar.value.from && calendar.value.to)}
                         value={`${dayjs(calendar.value.from!).format(mergedFormat())} - ${dayjs(calendar.value.to!).format(mergedFormat())}`}
@@ -215,19 +220,19 @@ export function FormDatePicker<
                   )}
                 </Calendar>
               </Show>
-            )
-          }}
-        </Field>
 
-        <Show when={errors()}>
-          <div
-            class="text-destructive text-xs data-disabled:opacity-50"
-            data-disabled={props.disabled ? '' : undefined}
-          >
-            {errors()?.[0]}
-          </div>
-        </Show>
-      </div>
+              <Show when={field.errors}>
+                <div
+                  class="text-destructive text-xs data-disabled:opacity-50"
+                  data-disabled={props.disabled ? '' : undefined}
+                >
+                  {field.errors?.[0]}
+                </div>
+              </Show>
+            </div>
+          )
+        }}
+      </Field>
     </div>
   )
 }
