@@ -158,7 +158,8 @@ export function FormExample() {
       <pre class="overflow-x-auto bg-black text-white p-2 rounded-lg text-xs">
         {JSON.stringify(getInput(form), null, 2)}
       </pre>
-      <pre class="overflow-x-auto bg-black text-white p-2 rounded-lg text-xs">
+
+      <pre class="overflow-x-auto text-destructive p-2 rounded-lg text-xs">
         {JSON.stringify(getAllErrors(form), null, 2)}
       </pre>
     </Form>

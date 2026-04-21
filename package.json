@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "tsc -b && vp build",
+    "build": "tsgo -b && vp build",
     "preview": "vp preview",
-    "tsc": "tsc -b",
+    "tsc": "tsgo -b",
     "lint": "vp lint --type-aware",
     "format": "vp fmt",
     "prepare": "vp config"
@@ -37,8 +37,8 @@
     "@tailwindcss/vite": "^4.2.2",
     "@tanstack/router-plugin": "^1.167.22",
     "@types/node": "^25.6.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260420.1",
     "solid-devtools": "^0.34.5",
-    "typescript": "^6.0.3",
     "vite": "^8.0.8",
     "vite-plugin-solid": "^2.11.12",
     "vite-plus": "^0.1.18"
