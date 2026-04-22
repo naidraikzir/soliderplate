@@ -13,6 +13,7 @@ import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
+import { Route as AppProductsIndexRouteImport } from './routes/_app/products/index'
 import { Route as AppFormExampleIndexRouteImport } from './routes/_app/form-example/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
@@ -34,6 +35,11 @@ const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   path: '/settings/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppProductsIndexRoute = AppProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppFormExampleIndexRoute = AppFormExampleIndexRouteImport.update({
   id: '/form-example/',
   path: '/form-example/',
@@ -44,12 +50,14 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof AuthLoginRoute
   '/form-example/': typeof AppFormExampleIndexRoute
+  '/products/': typeof AppProductsIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/': typeof AppIndexRoute
   '/form-example': typeof AppFormExampleIndexRoute
+  '/products': typeof AppProductsIndexRoute
   '/settings': typeof AppSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -58,19 +66,21 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_app/': typeof AppIndexRoute
   '/_app/form-example/': typeof AppFormExampleIndexRoute
+  '/_app/products/': typeof AppProductsIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/form-example/' | '/settings/'
+  fullPaths: '/' | '/login' | '/form-example/' | '/products/' | '/settings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/form-example' | '/settings'
+  to: '/login' | '/' | '/form-example' | '/products' | '/settings'
   id:
     | '__root__'
     | '/_app'
     | '/_auth/login'
     | '/_app/'
     | '/_app/form-example/'
+    | '/_app/products/'
     | '/_app/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -109,6 +119,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/products/': {
+      id: '/_app/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof AppProductsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/form-example/': {
       id: '/_app/form-example/'
       path: '/form-example'
@@ -122,12 +139,14 @@ declare module '@tanstack/solid-router' {
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppFormExampleIndexRoute: typeof AppFormExampleIndexRoute
+  AppProductsIndexRoute: typeof AppProductsIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppFormExampleIndexRoute: AppFormExampleIndexRoute,
+  AppProductsIndexRoute: AppProductsIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
 }
 
