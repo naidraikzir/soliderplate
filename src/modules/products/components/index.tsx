@@ -7,7 +7,7 @@ export function ProductList() {
   const products = useLiveQuery((q) => q.from({ products: productCollection }))
 
   return (
-    <div class="grid grid-cols-1 gap-4 max-w-xl mx-auto">
+    <div class="grid grid-cols-1 gap-4">
       <div class="text-4xl capitalize font-heading font-extrabold">Products</div>
 
       <For each={products()}>

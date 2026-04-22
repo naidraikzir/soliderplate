@@ -37,7 +37,9 @@ function RouteComponent() {
         </Button>
       </header>
 
-      <Outlet />
+      <div class="w-2xl max-w-full mx-auto">
+        <Outlet />
+      </div>
     </main>
   )
 }

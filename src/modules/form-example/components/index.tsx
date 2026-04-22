@@ -48,11 +48,7 @@ export function FormExample() {
   function onSubmit(_values: TExampleSchema) {}
 
   return (
-    <Form
-      of={form}
-      onSubmit={onSubmit}
-      class="grid grid-cols-1 md:grid-cols-2 gap-4 w-xl max-w-full mx-auto"
-    >
+    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
       <div class="text-4xl capitalize font-heading font-extrabold md:col-span-2">Form Example</div>
 
       <FormInput
