@@ -18,7 +18,7 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   }
 
   return (
-    <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-xs p-2">
+    <Form of={loginForm} onSubmit={submit} class="grid grid-cols-1 gap-2 max-w-sm mx-auto p-4">
       <FormInput of={loginForm} path={['username']} label="Username" placeholder="Username..." />
       <FormInput
         of={loginForm}
