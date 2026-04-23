@@ -34,7 +34,7 @@ Learn more about deploying your application with the [documentations](https://vi
 - [Shadcn](https://shadcn-solid.netlify.app)
 - [Formisch](https://formisch.dev/solid/guides)
 - [Valibot](https://valibot.dev)
-- [Radashi](https://radashi.js.org)
+- [ES-Toolkit](https://es-toolkit.dev/)
 - [DayJS](https://day.js.org)
 - [Ky](https://github.com/sindresorhus/ky)
 
