@@ -67,7 +67,7 @@ export function FormSelect<
           when={props.multiple}
           fallback={
             <Combobox<TOption>
-              class={cx('grid gap-2 space-y-0', props.class)}
+              class={cx('self-start grid gap-2 space-y-0', props.class)}
               triggerMode="focus"
               options={props.options}
               optionValue={(option) => option.value}
@@ -89,7 +89,9 @@ export function FormSelect<
               disabled={props.disabled}
             >
               <ComboboxLabel>{props.label}</ComboboxLabel>
-              <ComboboxControl<TOption> class={cx('h-auto', { 'animate-pulse': props.isLoading })}>
+              <ComboboxControl<TOption>
+                class={cx('h-auto min-h-9', { 'animate-pulse': props.isLoading })}
+              >
                 <ComboboxInput class="flex-1" />
                 <ComboboxTrigger />
               </ComboboxControl>
@@ -106,7 +108,7 @@ export function FormSelect<
           }
         >
           <Combobox<TOption>
-            class={cx('grid gap-2 space-y-0', props.class)}
+            class={cx('self-start grid gap-2 space-y-0', props.class)}
             triggerMode="focus"
             options={props.options}
             optionValue={(option) => option.value}
@@ -130,7 +132,9 @@ export function FormSelect<
             disabled={props.disabled}
           >
             <ComboboxLabel>{props.label}</ComboboxLabel>
-            <ComboboxControl<TOption> class={cx('h-auto', { 'animate-pulse': props.isLoading })}>
+            <ComboboxControl<TOption>
+              class={cx('h-auto min-h-9', { 'animate-pulse': props.isLoading })}
+            >
               {(state) => (
                 <div class="flex flex-wrap items-center gap-1 flex-1">
                   <For each={state.selectedOptions()}>
