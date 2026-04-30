@@ -45,6 +45,7 @@ type TFormSelectProps<
   description?: string
   options: TOption[]
   onInputChange?: (value: string) => void
+  isLoading?: boolean
   multiple?: TMultiple
   disabled?: boolean
 }
@@ -88,7 +89,7 @@ export function FormSelect<
               disabled={props.disabled}
             >
               <ComboboxLabel>{props.label}</ComboboxLabel>
-              <ComboboxControl<TOption> class="h-auto">
+              <ComboboxControl<TOption> class={cx('h-auto', { 'animate-pulse': props.isLoading })}>
                 <ComboboxInput class="flex-1" />
                 <ComboboxTrigger />
               </ComboboxControl>
@@ -129,7 +130,7 @@ export function FormSelect<
             disabled={props.disabled}
           >
             <ComboboxLabel>{props.label}</ComboboxLabel>
-            <ComboboxControl<TOption> class="h-auto">
+            <ComboboxControl<TOption> class={cx('h-auto', { 'animate-pulse': props.isLoading })}>
               {(state) => (
                 <div class="flex flex-wrap items-center gap-1 flex-1">
                   <For each={state.selectedOptions()}>
