@@ -3,6 +3,7 @@ import {
   boolean,
   check,
   isoTimestamp,
+  literal,
   minLength,
   object,
   pipe,
@@ -16,7 +17,7 @@ export const exampleSchema = object({
     string('Textarea is required'),
     minLength(3, 'Textarea must be at least 3 characters'),
   ),
-  checkbox: boolean(),
+  checkbox: pipe(boolean(), literal(true, 'Checkbox must be checked')),
   select: pipe(string('Select is required'), minLength(1, 'Select is required')),
   select_multiple: pipe(
     array(string('Select multiple is required')),

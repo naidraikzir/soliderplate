@@ -9,6 +9,8 @@ import {
 import { For, Show, type JSX } from 'solid-js'
 import * as v from 'valibot'
 
+import { cx } from '@/lib/cva'
+
 import { Badge } from '../ui/badge'
 import {
   Combobox,
@@ -64,7 +66,7 @@ export function FormSelect<
           when={props.multiple}
           fallback={
             <Combobox<TOption>
-              class={props.class}
+              class={cx('grid gap-2 space-y-0', props.class)}
               triggerMode="focus"
               options={props.options}
               optionValue={(option) => option.value}
@@ -103,7 +105,7 @@ export function FormSelect<
           }
         >
           <Combobox<TOption>
-            class={props.class}
+            class={cx('grid gap-2 space-y-0', props.class)}
             triggerMode="focus"
             options={props.options}
             optionValue={(option) => option.value}

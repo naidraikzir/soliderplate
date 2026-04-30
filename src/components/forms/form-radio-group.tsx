@@ -52,6 +52,7 @@ export function FormRadioGroup<TSchema extends Schema, TFieldPath extends Requir
       {(field) => (
         <div class={props.class}>
           <RadioGroup
+            class="gap-2"
             orientation={props.orientation}
             value={props.options.find((o) => o.value === field.input)?.value ?? ''}
             onChange={(value) => field.onInput(value as TFieldInput<TSchema, TFieldPath>)}

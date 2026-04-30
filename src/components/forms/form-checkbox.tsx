@@ -9,6 +9,8 @@ import {
 import { Show, type JSX } from 'solid-js'
 import * as v from 'valibot'
 
+import { cx } from '@/lib/cva'
+
 import {
   Checkbox,
   CheckboxControl,
@@ -37,7 +39,7 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
-        <div class={props.class}>
+        <div class={cx('grid gap-2', props.class)}>
           <Checkbox
             class="flex gap-2"
             checked={field.input as boolean}
@@ -53,12 +55,15 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
                 <CheckboxDescription>{props.description}</CheckboxDescription>
               </Show>
             </div>
-            <Show when={field.errors}>
-              <div class="text-destructive text-xs data-disabled:opacity-50">
-                {field.errors?.[0]}
-              </div>
-            </Show>
           </Checkbox>
+          <Show when={field.errors}>
+            <div
+              class="text-destructive text-xs data-disabled:opacity-50"
+              data-disabled={props.disabled ? '' : undefined}
+            >
+              {field.errors?.[0]}
+            </div>
+          </Show>
         </div>
       )}
     </Field>

@@ -6,7 +6,7 @@ import {
   type Schema,
   type ValidPath,
 } from '@formisch/solid'
-import { For, type JSX, Show } from 'solid-js'
+import { For, type JSX, mergeProps, Show } from 'solid-js'
 import * as v from 'valibot'
 
 import { cx } from '@/lib/cva'
@@ -16,6 +16,7 @@ import { Checkbox, CheckboxControl, CheckboxInput, CheckboxLabel } from '../ui/c
 type TFormCheckboxGroupProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
+  orientation?: 'horizontal' | 'vertical'
   class?: string
   label?: JSX.Element
   options: {
@@ -34,6 +35,8 @@ type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = Fiel
 export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends RequiredPath>(
   props: TFormCheckboxGroupProps<TSchema, TFieldPath>,
 ) {
+  const mergedProps = mergeProps({ orientation: 'vertical' }, props)
+
   return (
     <Field of={props.of} path={props.path}>
       {(field) => {
@@ -54,7 +57,7 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
         }
 
         return (
-          <div class={cx('self-start grid gap-3', props.class)}>
+          <div class={cx('grid gap-2', props.class)}>
             <span
               class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
               data-invalid={field.errors}
@@ -62,7 +65,11 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
             >
               {props.label}
             </span>
-            <div class="flex gap-3 gap-x-4 gap-y-2 flex-col">
+            <div
+              class={cx('flex gap-3 gap-x-4 gap-y-2', {
+                'flex-col': mergedProps.orientation === 'vertical',
+              })}
+            >
               <For each={props.options}>
                 {(option) => (
                   <Checkbox

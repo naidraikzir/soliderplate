@@ -21,6 +21,7 @@ import {
   CalendarTable,
 } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@/components/ui/popover'
+import { cx } from '@/lib/cva'
 
 type TFormDatePickerProps<
   TSchema extends Schema,
@@ -69,171 +70,164 @@ export function FormDatePicker<
   }
 
   return (
-    <div class={props.class}>
-      <Field of={props.of} path={props.path}>
-        {(field) => {
-          const value = createMemo(() =>
-            props.range
-              ? { from: from(), to: to() }
-              : field.input
-                ? new Date(field.input as string)
-                : null,
-          )
+    <Field of={props.of} path={props.path}>
+      {(field) => {
+        const value = createMemo(() =>
+          props.range
+            ? { from: from(), to: to() }
+            : field.input
+              ? new Date(field.input as string)
+              : null,
+        )
 
-          return (
-            <div class="grid w-full gap-2">
-              <label
-                for={id}
-                class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
-                data-disabled={props.disabled ? '' : undefined}
-                data-invalid={field.errors}
-              >
-                {props.label}
-              </label>
+        return (
+          <div class={cx('grid w-full gap-2', props.class)}>
+            <label
+              for={id}
+              class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
+              data-disabled={props.disabled ? '' : undefined}
+              data-invalid={field.errors}
+            >
+              {props.label}
+            </label>
 
-              <Show
-                when={props.range}
-                fallback={
-                  <Calendar
-                    mode="single"
-                    value={value() as Date | null}
-                    onValueChange={(value) => {
-                      field.onInput(
-                        (value?.toISOString() ?? '') as TFieldInput<TSchema, TFieldPath>,
-                      )
-                      setIsOpen(false)
-                    }}
-                  >
-                    {(calendar) => (
-                      <Popover open={isOpen()} onOpenChange={setIsOpen}>
-                        <Trigger
-                          id={id}
-                          disabled={props.disabled}
-                          invalid={field.errors || undefined}
-                          placeholder={props.placeholder || mergedFormat()}
-                          placeholderShown={!!calendar.value}
-                          value={dayjs(calendar.value).format(mergedFormat())}
-                        />
-                        <PopoverPortal>
-                          <PopoverContent class="w-auto p-0">
-                            <div class="flex flex-col gap-4 rounded-md p-3 shadow-sm">
-                              <div class="relative flex w-full items-center justify-between">
-                                <CalendarNav
-                                  action="prev-month"
-                                  aria-label="Go to previous month"
-                                />
-                                <CalendarLabel>
-                                  {dayjs(calendar.month).format('MMMM')}{' '}
-                                  {calendar.month.getFullYear()}
-                                </CalendarLabel>
-                                <CalendarNav action="next-month" aria-label="Go to next month" />
-                              </div>
-                              <Cells
-                                weekdays={calendar.weekdays}
-                                weeks={calendar.weeks}
-                                month={calendar.month}
-                              />
-                            </div>
-                          </PopoverContent>
-                        </PopoverPortal>
-                      </Popover>
-                    )}
-                  </Calendar>
-                }
-              >
+            <Show
+              when={props.range}
+              fallback={
                 <Calendar
-                  mode="range"
-                  numberOfMonths={2}
-                  value={value() as { from: Date | null; to: Date | null }}
-                  onValueChange={(value) =>
-                    handleRangeChange(value, () =>
-                      field.onInput({
-                        from: from()?.toISOString() ?? '',
-                        to: to()?.toISOString() ?? '',
-                      } as TFieldInput<TSchema, TFieldPath>),
-                    )
-                  }
+                  mode="single"
+                  value={value() as Date | null}
+                  onValueChange={(value) => {
+                    field.onInput((value?.toISOString() ?? '') as TFieldInput<TSchema, TFieldPath>)
+                    setIsOpen(false)
+                  }}
                 >
                   {(calendar) => (
-                    <Popover
-                      open={isOpen()}
-                      onOpenChange={(open) => {
-                        if (!open && from() && !to()) {
-                          const prev = previousRange()
-                          setRange(prev)
-                          field.onInput({
-                            from: prev[0]?.toISOString() ?? '',
-                            to: prev[1]?.toISOString() ?? '',
-                          } as TFieldInput<TSchema, TFieldPath>)
-                        } else {
-                          setIsOpen(open)
-                        }
-                      }}
-                    >
+                    <Popover open={isOpen()} onOpenChange={setIsOpen}>
                       <Trigger
                         id={id}
                         disabled={props.disabled}
                         invalid={field.errors || undefined}
                         placeholder={props.placeholder || mergedFormat()}
-                        placeholderShown={!!(calendar.value.from && calendar.value.to)}
-                        value={`${dayjs(calendar.value.from!).format(mergedFormat())} - ${dayjs(calendar.value.to!).format(mergedFormat())}`}
+                        placeholderShown={!!calendar.value}
+                        value={dayjs(calendar.value).format(mergedFormat())}
                       />
                       <PopoverPortal>
                         <PopoverContent class="w-auto p-0">
-                          <div class="rounded-md p-3 shadow-sm">
-                            <div class="relative w-full">
-                              <CalendarNav
-                                action="prev-month"
-                                class="absolute top-0.5 md:top-0 left-1 size-6 md:size-7"
-                                aria-label="Go to previous month"
-                              />
-                              <CalendarNav
-                                action="next-month"
-                                class="absolute top-0.5 md:top-0 right-1 size-6 md:size-7"
-                                aria-label="Go to next month"
-                              />
+                          <div class="flex flex-col gap-4 rounded-md p-3 shadow-sm">
+                            <div class="relative flex w-full items-center justify-between">
+                              <CalendarNav action="prev-month" aria-label="Go to previous month" />
+                              <CalendarLabel>
+                                {dayjs(calendar.month).format('MMMM')}{' '}
+                                {calendar.month.getFullYear()}
+                              </CalendarLabel>
+                              <CalendarNav action="next-month" aria-label="Go to next month" />
                             </div>
-                            <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
-                              <Index each={calendar.months}>
-                                {(month, index) => (
-                                  <div class="flex flex-col gap-2 md:gap-4">
-                                    <div class="flex h-7 items-center justify-center">
-                                      <CalendarLabel index={index}>
-                                        {dayjs(month().month).format('MMMM')}{' '}
-                                        {month().month.getFullYear()}
-                                      </CalendarLabel>
-                                    </div>
-                                    <Cells
-                                      index={index}
-                                      weekdays={calendar.weekdays}
-                                      weeks={month().weeks}
-                                      month={month().month}
-                                    />
-                                  </div>
-                                )}
-                              </Index>
-                            </div>
+                            <Cells
+                              weekdays={calendar.weekdays}
+                              weeks={calendar.weeks}
+                              month={calendar.month}
+                            />
                           </div>
                         </PopoverContent>
                       </PopoverPortal>
                     </Popover>
                   )}
                 </Calendar>
-              </Show>
+              }
+            >
+              <Calendar
+                mode="range"
+                numberOfMonths={2}
+                value={value() as { from: Date | null; to: Date | null }}
+                onValueChange={(value) =>
+                  handleRangeChange(value, () =>
+                    field.onInput({
+                      from: from()?.toISOString() ?? '',
+                      to: to()?.toISOString() ?? '',
+                    } as TFieldInput<TSchema, TFieldPath>),
+                  )
+                }
+              >
+                {(calendar) => (
+                  <Popover
+                    open={isOpen()}
+                    onOpenChange={(open) => {
+                      if (!open && from() && !to()) {
+                        const prev = previousRange()
+                        setRange(prev)
+                        field.onInput({
+                          from: prev[0]?.toISOString() ?? '',
+                          to: prev[1]?.toISOString() ?? '',
+                        } as TFieldInput<TSchema, TFieldPath>)
+                      } else {
+                        setIsOpen(open)
+                      }
+                    }}
+                  >
+                    <Trigger
+                      id={id}
+                      disabled={props.disabled}
+                      invalid={field.errors || undefined}
+                      placeholder={props.placeholder || mergedFormat()}
+                      placeholderShown={!!(calendar.value.from && calendar.value.to)}
+                      value={`${dayjs(calendar.value.from!).format(mergedFormat())} - ${dayjs(calendar.value.to!).format(mergedFormat())}`}
+                    />
+                    <PopoverPortal>
+                      <PopoverContent class="w-auto p-0">
+                        <div class="rounded-md p-3 shadow-sm">
+                          <div class="relative w-full">
+                            <CalendarNav
+                              action="prev-month"
+                              class="absolute top-0.5 md:top-0 left-1 size-6 md:size-7"
+                              aria-label="Go to previous month"
+                            />
+                            <CalendarNav
+                              action="next-month"
+                              class="absolute top-0.5 md:top-0 right-1 size-6 md:size-7"
+                              aria-label="Go to next month"
+                            />
+                          </div>
+                          <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
+                            <Index each={calendar.months}>
+                              {(month, index) => (
+                                <div class="flex flex-col gap-2 md:gap-4">
+                                  <div class="flex h-7 items-center justify-center">
+                                    <CalendarLabel index={index}>
+                                      {dayjs(month().month).format('MMMM')}{' '}
+                                      {month().month.getFullYear()}
+                                    </CalendarLabel>
+                                  </div>
+                                  <Cells
+                                    index={index}
+                                    weekdays={calendar.weekdays}
+                                    weeks={month().weeks}
+                                    month={month().month}
+                                  />
+                                </div>
+                              )}
+                            </Index>
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </PopoverPortal>
+                  </Popover>
+                )}
+              </Calendar>
+            </Show>
 
-              <Show when={field.errors}>
-                <div
-                  class="text-destructive text-xs data-disabled:opacity-50"
-                  data-disabled={props.disabled ? '' : undefined}
-                >
-                  {field.errors?.[0]}
-                </div>
-              </Show>
-            </div>
-          )
-        }}
-      </Field>
-    </div>
+            <Show when={field.errors}>
+              <div
+                class="text-destructive text-xs data-disabled:opacity-50"
+                data-disabled={props.disabled ? '' : undefined}
+              >
+                {field.errors?.[0]}
+              </div>
+            </Show>
+          </div>
+        )
+      }}
+    </Field>
   )
 }
 
