@@ -14,7 +14,7 @@ import { FormDropzone } from '@/components/forms/form-dropzone'
 import { Button } from '@/components/ui/button'
 import { ToggleButton } from '@/components/ui/toggle-button'
 
-import { exampleSchema, type TExampleSchema } from '../schema'
+import { ExampleSchema } from '../schema'
 
 const options = Array.from({ length: 4 }, (_, i) => ({
   label: `Option ${i + 1}`,
@@ -41,11 +41,11 @@ export function FormExample() {
       dropzone: '',
       dropzone_multi: [],
     },
-    schema: exampleSchema,
+    schema: ExampleSchema,
     validate: 'submit',
   })
 
-  function onSubmit(_values: TExampleSchema) {}
+  function onSubmit(_values: ExampleSchema) {}
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -138,6 +138,7 @@ export function FormExample() {
         placeholder="Drop files here..."
         class="md:col-span-2"
         disabled={disabled()}
+        columns={2}
         multiple
       />
 

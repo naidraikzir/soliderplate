@@ -39,7 +39,7 @@ export function FormCheckbox<TSchema extends Schema, TFieldPath extends Required
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
-        <div class={cx('grid gap-2', props.class)}>
+        <div class={cx('self-start grid gap-2', props.class)}>
           <Checkbox
             class="flex gap-2"
             checked={field.input as boolean}

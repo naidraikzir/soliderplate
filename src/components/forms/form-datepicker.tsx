@@ -81,7 +81,7 @@ export function FormDatePicker<
         )
 
         return (
-          <div class={cx('grid w-full gap-2', props.class)}>
+          <div class={cx('self-start grid w-full gap-2', props.class)}>
             <label
               for={id}
               class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"

@@ -9,6 +9,8 @@ import {
 import { Show, type JSX } from 'solid-js'
 import * as v from 'valibot'
 
+import { cx } from '@/lib/cva'
+
 import { TextField, TextFieldErrorMessage, TextFieldInput, TextFieldLabel } from '../ui/text-field'
 
 type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
@@ -32,7 +34,7 @@ export function FormInput<TSchema extends Schema, TFieldPath extends RequiredPat
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
-        <div class={props.class}>
+        <div class={cx('self-start', props.class)}>
           <TextField
             value={field.input as string}
             onChange={(value) => field.onInput(value as TFieldInput<TSchema, TFieldPath>)}

@@ -50,7 +50,7 @@ export function FormRadioGroup<TSchema extends Schema, TFieldPath extends Requir
   return (
     <Field of={props.of} path={props.path}>
       {(field) => (
-        <div class={props.class}>
+        <div class={cx('self-start', props.class)}>
           <RadioGroup
             class="gap-2"
             orientation={props.orientation}

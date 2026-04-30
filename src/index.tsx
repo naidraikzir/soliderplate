@@ -6,6 +6,7 @@ import { render } from 'solid-js/web'
 
 import './index.css'
 import { routeTree } from './routeTree.gen.ts'
+import './validations.ts'
 
 const root = document.getElementById('root')
 

@@ -21,6 +21,7 @@ type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = 
   placeholder?: string
   disabled?: boolean
   multiple?: boolean
+  columns?: 1 | 2
 }
 
 type TFieldDropzone<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
@@ -70,7 +71,7 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
         return (
           <div
             class={cx(
-              'grid gap-2 data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50',
+              'self-start grid gap-2 data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50',
               props.class,
             )}
             data-disabled={props.disabled ? '' : undefined}
@@ -82,10 +83,11 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
             >
               {props.label}
             </label>
+
             <div
               class={cx(
-                'relative min-h-24 flex flex-col items-center justify-center gap-2 border dark:bg-input/30',
-                'border-input rounded-md data-invalid:border-destructive p-2 data-invalid:text-destructive',
+                'relative min-h-24 flex flex-col items-center justify-center gap-2 dark:bg-input/30',
+                'border-2 border-dashed border-input rounded-md data-invalid:border-destructive p-2 data-invalid:text-destructive',
               )}
               data-invalid={field.errors}
             >
@@ -115,36 +117,42 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
                 multiple={props.multiple}
               />
             </div>
-            <For each={created()}>
-              {(file, f) => (
-                <div class="flex justify-between items-center text-xs data-disabled:opacity-50">
-                  <span>{file.filename}</span>
-                  <Button
-                    variant="ghost"
-                    size="icon-sm"
-                    onClick={() => {
-                      const index = f()
 
-                      setCreated((prev) => prev.filter((_, i) => i !== index))
+            <div class={cx('grid gap-2', props.columns === 2 ? 'md:grid-cols-2' : 'grid-cols-1')}>
+              <For each={created()}>
+                {(file, f) => (
+                  <div class="flex justify-between items-center gap-2 text-xs data-disabled:opacity-50">
+                    <span class="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
+                      {file.filename}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      onClick={() => {
+                        const index = f()
 
-                      if (props.multiple) {
-                        const current = field.input as string[]
-                        field.onInput(
-                          current.filter((_, i) => i !== index) as TFieldDropzone<
-                            TSchema,
-                            TFieldPath
-                          >,
-                        )
-                      } else {
-                        field.onInput('' as TFieldDropzone<TSchema, TFieldPath>)
-                      }
-                    }}
-                  >
-                    <span class="icon-[lucide--x] text-destructive text-base"></span>
-                  </Button>
-                </div>
-              )}
-            </For>
+                        setCreated((prev) => prev.filter((_, i) => i !== index))
+
+                        if (props.multiple) {
+                          const current = field.input as string[]
+                          field.onInput(
+                            current.filter((_, i) => i !== index) as TFieldDropzone<
+                              TSchema,
+                              TFieldPath
+                            >,
+                          )
+                        } else {
+                          field.onInput('' as TFieldDropzone<TSchema, TFieldPath>)
+                        }
+                      }}
+                    >
+                      <span class="icon-[lucide--x] text-destructive text-base"></span>
+                    </Button>
+                  </div>
+                )}
+              </For>
+            </div>
+
             <Show when={field.errors}>
               <div class="text-destructive text-xs data-disabled:opacity-50">
                 {field.errors?.[0]}

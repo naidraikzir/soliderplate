@@ -57,7 +57,7 @@ export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends Req
         }
 
         return (
-          <div class={cx('grid gap-2', props.class)}>
+          <div class={cx('self-start grid gap-2', props.class)}>
             <span
               class="text-sm font-medium select-none data-disabled:opacity-50 data-invalid:text-destructive"
               data-invalid={field.errors}
