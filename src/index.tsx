@@ -21,7 +21,7 @@ render(() => {
       <ColorModeProvider storageManager={storageManager}>
         <RouterProvider
           router={router}
-          context={{ isAuthenticated: () => !!localStorage.getItem('token') }}
+          context={{ isAuthenticated: () => !!localStorage.getItem('is_authenticated') }}
         />
       </ColorModeProvider>
     </>
