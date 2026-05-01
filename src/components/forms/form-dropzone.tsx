@@ -118,40 +118,42 @@ export function FormDropzone<TSchema extends Schema, TFieldPath extends Required
               />
             </div>
 
-            <div class={cx('grid gap-2', props.columns === 2 ? 'md:grid-cols-2' : 'grid-cols-1')}>
-              <For each={created()}>
-                {(file, f) => (
-                  <div class="flex justify-between items-center gap-2 text-xs data-disabled:opacity-50">
-                    <span class="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
-                      {file.filename}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      onClick={() => {
-                        const index = f()
+            <Show when={created().length}>
+              <div class={cx('grid gap-2', props.columns === 2 ? 'md:grid-cols-2' : 'grid-cols-1')}>
+                <For each={created()}>
+                  {(file, f) => (
+                    <div class="flex justify-between items-center gap-2 text-xs data-disabled:opacity-50">
+                      <span class="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
+                        {file.filename}
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => {
+                          const index = f()
 
-                        setCreated((prev) => prev.filter((_, i) => i !== index))
+                          setCreated((prev) => prev.filter((_, i) => i !== index))
 
-                        if (props.multiple) {
-                          const current = field.input as string[]
-                          field.onInput(
-                            current.filter((_, i) => i !== index) as TFieldDropzone<
-                              TSchema,
-                              TFieldPath
-                            >,
-                          )
-                        } else {
-                          field.onInput('' as TFieldDropzone<TSchema, TFieldPath>)
-                        }
-                      }}
-                    >
-                      <span class="icon-[lucide--x] text-destructive text-base"></span>
-                    </Button>
-                  </div>
-                )}
-              </For>
-            </div>
+                          if (props.multiple) {
+                            const current = field.input as string[]
+                            field.onInput(
+                              current.filter((_, i) => i !== index) as TFieldDropzone<
+                                TSchema,
+                                TFieldPath
+                              >,
+                            )
+                          } else {
+                            field.onInput('' as TFieldDropzone<TSchema, TFieldPath>)
+                          }
+                        }}
+                      >
+                        <span class="icon-[lucide--x] text-destructive text-base"></span>
+                      </Button>
+                    </div>
+                  )}
+                </For>
+              </div>
+            </Show>
 
             <Show when={field.errors}>
               <div class="text-destructive text-xs data-disabled:opacity-50">
