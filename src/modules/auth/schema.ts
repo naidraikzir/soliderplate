@@ -1,8 +1,8 @@
-import { minLength, pipe, string, object, type InferOutput } from 'valibot'
+import { pipe, string, object, type InferOutput, nonEmpty } from 'valibot'
 
 export const loginSchema = object({
-  username: pipe(string('Username is required'), minLength(1, 'Username is required')),
-  password: pipe(string('Password is required'), minLength(1, 'Password is required')),
+  username: pipe(string(), nonEmpty()),
+  password: pipe(string(), nonEmpty()),
 })
 
 export type TLoginSchema = InferOutput<typeof loginSchema>
