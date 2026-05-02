@@ -59,14 +59,14 @@ export function FormDatePicker<
 
   function handleRangeChange(
     newRange: { from: Date | null; to: Date | null },
-    callback: () => void,
+    callback: (newRange: { from: Date | null; to: Date | null }) => void,
   ) {
     setRange([newRange.from, newRange.to])
     if (newRange.from && newRange.to) {
       setPreviousRange([newRange.from, newRange.to])
       setIsOpen(false)
     }
-    callback()
+    callback(newRange)
   }
 
   return (
@@ -141,10 +141,10 @@ export function FormDatePicker<
                 numberOfMonths={2}
                 value={value() as { from: Date | null; to: Date | null }}
                 onValueChange={(value) =>
-                  handleRangeChange(value, () =>
+                  handleRangeChange(value, (newRange) =>
                     field.onInput({
-                      from: from()?.toISOString() ?? '',
-                      to: to()?.toISOString() ?? '',
+                      from: newRange.from?.toISOString() ?? '',
+                      to: newRange.to?.toISOString() ?? '',
                     } as TFieldInput<TSchema, TFieldPath>),
                   )
                 }

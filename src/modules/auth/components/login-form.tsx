@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { loginSchema, type TLoginSchema } from '../schema'
 import { login } from '../services'
 
-export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
+export function LoginForm(props: { onSuccess?: () => void }) {
   const loginForm = createForm({
     schema: loginSchema,
     validate: 'submit',
@@ -14,7 +14,7 @@ export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
 
   function submit(values: TLoginSchema) {
     login(values)
-    onSuccess?.()
+    props.onSuccess?.()
   }
 
   return (

@@ -42,6 +42,7 @@
     "@tanstack/router-plugin": "^1.167.28",
     "@types/node": "^25.6.0",
     "@typescript/native-preview": "^7.0.0-dev.20260428.1",
+    "eslint-plugin-solid": "^0.14.5",
     "solid-devtools": "^0.34.5",
     "vite": "^8.0.10",
     "vite-plugin-solid": "^2.11.12",

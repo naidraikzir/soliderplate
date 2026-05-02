@@ -5,7 +5,19 @@ import solid from 'vite-plugin-solid'
 import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
-  lint: { options: { typeAware: true, typeCheck: true } },
+  lint: {
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: ['eslint-plugin-solid'],
+    rules: {
+      'solid/jsx-no-undef': 'error',
+      'solid/no-destructure': 'error',
+      'solid/prefer-for': 'warn',
+      'solid/reactivity': 'error',
+    },
+  },
   fmt: {
     semi: false,
     singleQuote: true,
