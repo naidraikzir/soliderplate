@@ -38,6 +38,7 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@iconify-json/lucide": "^1.2.104",
     "@iconify/tailwind4": "^1.2.3",
+    "@inlang/paraglide-js": "^2.18.0",
     "@tailwindcss/vite": "^4.2.4",
     "@tanstack/router-plugin": "^1.167.28",
     "@types/node": "^25.6.0",

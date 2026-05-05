@@ -2,6 +2,7 @@ import { useColorMode } from '@kobalte/core'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/solid-router'
 import { For } from 'solid-js'
 
+import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Button } from '@/components/ui/button'
 import { logout } from '@/modules/auth/services'
 
@@ -38,7 +39,9 @@ function RouteComponent() {
             )}
           </For>
         </div>
-        <Button variant="ghost" size="icon" class="ml-auto" onClick={toggleColorMode}>
+
+        <LocaleSwitcher class="ml-auto" />
+        <Button variant="ghost" size="icon" onClick={toggleColorMode}>
           <span class="[html[data-kb-theme=light]_&]:icon-[lucide--sun] [html[data-kb-theme=dark]_&]:icon-[lucide--moon]" />
         </Button>
         <Button onClick={onLogout}>Logout</Button>

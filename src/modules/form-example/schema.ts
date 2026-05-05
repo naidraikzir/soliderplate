@@ -12,8 +12,14 @@ import {
   type InferOutput,
 } from 'valibot'
 
+import { m } from '@/paraglide/messages'
+
 export const ExampleSchema = object({
-  input: pipe(string(), nonEmpty(), minLength(3)),
+  input: pipe(
+    string(),
+    nonEmpty(),
+    minLength(3, ({ requirement }) => m['errors.minLength']({ name: 'Input', min: requirement })),
+  ),
   textarea: pipe(string(), nonEmpty(), minLength(3)),
   checkbox: pipe(boolean(), literal(true, 'Checkbox must be checked')),
   select: pipe(string(), nonEmpty()),

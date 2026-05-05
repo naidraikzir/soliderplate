@@ -1,4 +1,4 @@
-import { createForm, Form, getInput, getAllErrors, reset } from '@formisch/solid'
+import { createForm, Form, getAllErrors, getInput, reset } from '@formisch/solid'
 import { createSignal } from 'solid-js'
 
 import {
@@ -13,6 +13,7 @@ import {
 import { FormDropzone } from '@/components/forms/form-dropzone'
 import { Button } from '@/components/ui/button'
 import { ToggleButton } from '@/components/ui/toggle-button'
+import { m } from '@/paraglide/messages'
 
 import { ExampleSchema } from '../schema'
 
@@ -49,7 +50,9 @@ export function FormExample() {
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-      <div class="text-4xl capitalize font-heading font-extrabold md:col-span-2">Form Example</div>
+      <div class="text-4xl capitalize font-heading font-extrabold md:col-span-2">
+        {m.form_example()}
+      </div>
 
       <FormInput
         of={form}
