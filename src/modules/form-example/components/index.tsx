@@ -49,8 +49,8 @@ export function FormExample() {
   function onSubmit(_values: ExampleSchema) {}
 
   return (
-    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-      <div class="text-4xl capitalize font-heading font-extrabold md:col-span-2">
+    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+      <div class="text-4xl capitalize font-heading font-extrabold sm:col-span-2">
         {m.form_example()}
       </div>
 
@@ -65,7 +65,7 @@ export function FormExample() {
       <FormTextarea
         of={form}
         path={['textarea']}
-        class="md:col-span-2"
+        class="sm:col-span-2"
         label="Textarea"
         placeholder="Textarea..."
         disabled={disabled()}
@@ -74,7 +74,7 @@ export function FormExample() {
       <FormCheckbox
         of={form}
         path={['checkbox']}
-        class="md:col-span-2"
+        class="sm:col-span-2"
         label="Checkbox"
         description="Checkbox Description"
         disabled={disabled()}
@@ -130,7 +130,7 @@ export function FormExample() {
         of={form}
         path={['dropzone']}
         label="Dropzone"
-        class="md:col-span-2"
+        class="sm:col-span-2"
         disabled={disabled()}
       />
 
@@ -139,13 +139,13 @@ export function FormExample() {
         path={['dropzone_multi']}
         label="Dropzone Multiple"
         placeholder="Drop files here..."
-        class="md:col-span-2"
+        class="sm:col-span-2"
         disabled={disabled()}
         columns={2}
         multiple
       />
 
-      <div class="md:col-span-2 flex justify-end gap-2">
+      <div class="sm:col-span-2 flex justify-end gap-2">
         <ToggleButton variant="outline" size="sm" pressed={disabled()} onChange={setDisabled}>
           Disable
         </ToggleButton>
