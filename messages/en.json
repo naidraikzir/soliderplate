@@ -1,13 +1,14 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "//": "",
-  "change_locale": "Are you sure you want to change the language? Any unsaved changes will be lost.",
-  "form_example": "Form Example",
+  "change_locale": "are you sure you want to change the language? any unsaved changes will be lost.",
+  "form_example": "form example",
+  "field": "field",
   "//": "",
   "errors.required": "{name} is required",
   "errors.nonEmpty": "{name} is required",
   "errors.minLength": "{name} must be at least {min} characters",
   "errors.string": "{name} is required",
   "errors.isoTimestamp": "{name} is required",
-  "errors.checkbox.true": "Checkbox must be checked"
+  "errors.checkbox.true": "checkbox must be checked"
 }

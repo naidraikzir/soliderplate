@@ -18,7 +18,7 @@ export const ExampleSchema = object({
   input: pipe(
     string(),
     nonEmpty(),
-    minLength(3, ({ requirement }) => m['errors.minLength']({ name: 'Input', min: requirement })),
+    minLength(3, ({ requirement }) => m['errors.minLength']({ name: 'input', min: requirement })),
   ),
   textarea: pipe(string(), nonEmpty(), minLength(3)),
   checkbox: pipe(boolean(), literal(true, m['errors.checkbox.true'])),
@@ -32,7 +32,7 @@ export const ExampleSchema = object({
       from: pipe(string(), isoTimestamp()),
       to: pipe(string(), isoTimestamp()),
     }),
-    check((value) => !!(value.from && value.to), m['errors.required']({ name: 'Date Range' })),
+    check((value) => !!(value.from && value.to), m['errors.required']({ name: 'date range' })),
   ),
   dropzone: pipe(string(), nonEmpty()),
   dropzone_multi: pipe(array(string()), nonEmpty()),
