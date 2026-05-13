@@ -1,6 +1,13 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "//": "",
   "change_locale": "Apakah Anda yakin ingin mengganti bahasa? Perubahan yang belum disimpan akan hilang.",
   "form_example": "Contoh Form",
-  "errors.minLength": "{name} harus memiliki minimal {min} karakter"
+  "//": "",
+  "errors.required": "{name} wajib diisi",
+  "errors.nonEmpty": "{name} wajib diisi",
+  "errors.minLength": "{name} harus memiliki minimal {min} karakter",
+  "errors.string": "{name} wajib diisi",
+  "errors.isoTimestamp": "{name} wajib diisi",
+  "errors.checkbox.true": "Kotak harus dicentang"
 }
