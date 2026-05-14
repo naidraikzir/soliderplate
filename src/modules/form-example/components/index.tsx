@@ -159,7 +159,7 @@ export function FormExample() {
         </Button>
       </div>
 
-      <pre class="overflow-x-auto bg-black text-white p-2 rounded-lg text-xs">
+      <pre class="overflow-x-auto bg-black/50 text-white p-2 rounded-lg text-xs">
         {JSON.stringify(getInput(form), null, 2)}
       </pre>
 

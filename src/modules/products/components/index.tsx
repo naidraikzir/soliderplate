@@ -14,7 +14,7 @@ export function ProductList() {
 
       <For each={products()}>
         {(product) => (
-          <Card class="gap-4 sm:gap-6 py-4 sm:py-6">
+          <Card class="gap-4 sm:gap-6 py-4 sm:py-6 bg-card/50 backdrop-blur-lg">
             <CardHeader class="px-4 sm:px-6">
               <CardTitle class="flex justify-between gap-2">
                 <div class="text-lg">{product.title}</div>

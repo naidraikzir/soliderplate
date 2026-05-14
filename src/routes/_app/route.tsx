@@ -1,9 +1,11 @@
 import { useColorMode } from '@kobalte/core'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/solid-router'
-import { For } from 'solid-js'
+import { createSignal, For } from 'solid-js'
 
+import leaves from '@/assets/leaves.webp'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Button } from '@/components/ui/button'
+import { cx } from '@/lib/cva'
 import { logout } from '@/modules/auth/services'
 
 export const Route = createFileRoute('/_app')({
@@ -27,10 +29,18 @@ function RouteComponent() {
     void navigate({ to: '/login' })
   }
 
+  const [bg, toggleBg] = createSignal(false)
+
   return (
     <main class="grid grid-cols-1 gap-2 p-2">
-      <header class="flex items-center justify-between gap-4">
-        <div class="flex gap-2">
+      <div
+        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover', { 'opacity-100': bg() })}
+        style={{ 'background-image': `url(${leaves})` }}
+      />
+      <div class="fixed inset-0 bg-background/50 backdrop-blur-2xl" />
+
+      <header class="relative flex items-center justify-between gap-4 z-1">
+        <div class="flex gap-1 sm:gap-2">
           <For each={links}>
             {({ to, label }) => (
               <Link to={to} class="px-2">
@@ -40,8 +50,11 @@ function RouteComponent() {
           </For>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1 sm:gap-2">
           <LocaleSwitcher />
+          <Button variant="ghost" size="icon-sm" onClick={() => toggleBg((bg) => !bg)}>
+            <span class="icon-[lucide--image]" />
+          </Button>
           <Button variant="ghost" size="icon-sm" onClick={toggleColorMode}>
             <span class="[html[data-kb-theme=light]_&]:icon-[lucide--sun] [html[data-kb-theme=dark]_&]:icon-[lucide--moon]" />
           </Button>
@@ -52,7 +65,7 @@ function RouteComponent() {
         </div>
       </header>
 
-      <div class="w-2xl max-w-full mx-auto">
+      <div class="w-2xl max-w-full mx-auto z-1">
         <Outlet />
       </div>
     </main>
