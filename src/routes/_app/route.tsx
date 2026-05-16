@@ -1,10 +1,10 @@
-import { useColorMode } from '@kobalte/core'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/solid-router'
 import { createSignal, For } from 'solid-js'
 
 import bgDark from '@/assets/bg-dark.webp'
 import bgLight from '@/assets/bg-light.webp'
 import { LocaleSwitcher } from '@/components/locale-switcher'
+import { ThemeSwitcher } from '@/components/theme-switcher'
 import { Button } from '@/components/ui/button'
 import { cx } from '@/lib/cva'
 import { logout } from '@/modules/auth/services'
@@ -22,7 +22,6 @@ export const Route = createFileRoute('/_app')({
 })
 
 function RouteComponent() {
-  const { toggleColorMode } = useColorMode()
   const navigate = Route.useNavigate()
 
   function onLogout() {
@@ -46,7 +45,7 @@ function RouteComponent() {
       />
       <div class="fixed inset-0 bg-background/50 backdrop-blur-2xl" />
 
-      <header class="relative flex items-center justify-between gap-4 z-1">
+      <header class="relative flex items-center justify-between gap-4 z-2">
         <div class="flex gap-1 sm:gap-2">
           <For each={links}>
             {({ to, label }) => (
@@ -62,9 +61,7 @@ function RouteComponent() {
           <Button variant="ghost" size="icon-sm" onClick={() => toggleBg((bg) => !bg)}>
             <span class="icon-[lucide--image]" />
           </Button>
-          <Button variant="ghost" size="icon-sm" onClick={toggleColorMode}>
-            <span class="[html[data-kb-theme=light]_&]:icon-[lucide--sun] [html[data-kb-theme=dark]_&]:icon-[lucide--moon]" />
-          </Button>
+          <ThemeSwitcher />
           <Button onClick={onLogout}>
             <span class="max-sm:icon-[lucide--log-out]" />
             <span class="hidden sm:inline">Logout</span>
