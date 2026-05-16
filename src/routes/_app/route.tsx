@@ -2,7 +2,8 @@ import { useColorMode } from '@kobalte/core'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/solid-router'
 import { createSignal, For } from 'solid-js'
 
-import leaves from '@/assets/leaves.webp'
+import bgDark from '@/assets/bg-dark.webp'
+import bgLight from '@/assets/bg-light.webp'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Button } from '@/components/ui/button'
 import { cx } from '@/lib/cva'
@@ -35,7 +36,13 @@ function RouteComponent() {
     <main class="grid grid-cols-1 gap-2 p-2">
       <div
         class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover', { 'opacity-100': bg() })}
-        style={{ 'background-image': `url(${leaves})` }}
+        style={{ 'background-image': `url(${bgLight})` }}
+      />
+      <div
+        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover', {
+          'dark:opacity-100': bg(),
+        })}
+        style={{ 'background-image': `url(${bgDark})` }}
       />
       <div class="fixed inset-0 bg-background/50 backdrop-blur-2xl" />
 
