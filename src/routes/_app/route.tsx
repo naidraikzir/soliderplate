@@ -43,7 +43,7 @@ function RouteComponent() {
         })}
         style={{ 'background-image': `url(${bgDark})` }}
       />
-      <div class="fixed inset-0 bg-background/50 backdrop-blur-2xl" />
+      <div class="fixed inset-0 bg-background/50" />
 
       <header class="relative flex items-center justify-between gap-4 z-2">
         <div class="flex gap-1 sm:gap-2">
