@@ -13,6 +13,7 @@ import {
 import { FormDropzone } from '@/components/forms/form-dropzone'
 import { Button } from '@/components/ui/button'
 import { ToggleButton } from '@/components/ui/toggle-button'
+import { useBlocker } from '@/hooks/use-blocker'
 import { m } from '@/paraglide/messages'
 
 import { ExampleSchema } from '../schema'
@@ -47,6 +48,8 @@ export function FormExample() {
   })
 
   function onSubmit(_values: ExampleSchema) {}
+
+  useBlocker(() => form.isDirty)
 
   return (
     <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">

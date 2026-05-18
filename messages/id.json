@@ -1,7 +1,7 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "//": "",
-  "change_locale": "apakah anda yakin ingin mengganti bahasa? perubahan yang belum disimpan akan hilang.",
+  "block_navigation": "apakah anda yakin? perubahan yang belum disimpan akan hilang.",
   "form_example": "contoh form",
   "field": "isian",
   "//": "",

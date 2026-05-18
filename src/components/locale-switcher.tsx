@@ -2,7 +2,6 @@ import { delay } from 'es-toolkit'
 import { createSignal, For } from 'solid-js'
 
 import { cx } from '@/lib/cva'
-import { m } from '@/paraglide/messages'
 import { getLocale, locales, setLocale } from '@/paraglide/runtime'
 
 import { Button } from './ui/button'
@@ -30,7 +29,7 @@ export function LocaleSwitcher(props: { class?: string }) {
                 setIsOpen(false)
                 void (async () => {
                   await delay(1)
-                  if (confirm(m.change_locale())) void setLocale(locale)
+                  void setLocale(locale)
                 })()
               }}
             >
