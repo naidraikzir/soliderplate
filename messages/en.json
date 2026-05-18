@@ -1,7 +1,7 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "//": "",
-  "block_navigation": "are you sure? changes you made may not be saved.",
+  "block_navigation": "are you sure you want to leave? changes you made may not be saved.",
   "form_example": "form example",
   "field": "field",
   "//": "",

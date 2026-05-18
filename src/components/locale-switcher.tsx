@@ -1,7 +1,9 @@
-import { delay } from 'es-toolkit'
+import { capitalize } from 'es-toolkit'
 import { createSignal, For } from 'solid-js'
 
+import { getIsBlocking, setBypassBlocker } from '@/hooks/use-blocker'
 import { cx } from '@/lib/cva'
+import { m } from '@/paraglide/messages'
 import { getLocale, locales, setLocale } from '@/paraglide/runtime'
 
 import { Button } from './ui/button'
@@ -27,10 +29,16 @@ export function LocaleSwitcher(props: { class?: string }) {
               class={cx('block border', { 'opacity-50 border-0': locale !== getLocale() })}
               onClick={() => {
                 setIsOpen(false)
-                void (async () => {
-                  await delay(1)
-                  void setLocale(locale)
-                })()
+
+                if (
+                  getIsBlocking() &&
+                  !confirm(m.block_navigation().split('? ').map(capitalize).join('? '))
+                ) {
+                  return
+                }
+
+                setBypassBlocker(true)
+                void setLocale(locale)
               }}
             >
               {locale}
