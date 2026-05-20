@@ -10,7 +10,16 @@ import './validations.ts'
 
 const root = document.getElementById('root')
 
-const router = createRouter({ routeTree, defaultViewTransition: true })
+const router = createRouter({
+  routeTree,
+  defaultViewTransition: true,
+  defaultNotFoundComponent: () => (
+    <div class="flex flex-col gap-2 justify-end h-dvh mx-auto p-4 sm:p-12">
+      <div class="text-xl">404</div>
+      <div class="text-5xl">Not Found</div>
+    </div>
+  ),
+})
 
 render(() => {
   const storageManager = cookieStorageManagerSSR(document.cookie)
