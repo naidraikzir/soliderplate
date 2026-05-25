@@ -63,7 +63,7 @@ function RouteComponent() {
           </Button>
           <ThemeSwitcher />
           <Button onClick={onLogout}>
-            <span class="max-sm:icon-[lucide--log-out]" />
+            <span class="icon-[lucide--log-out] sm:hidden" />
             <span class="hidden sm:inline">Logout</span>
           </Button>
         </div>

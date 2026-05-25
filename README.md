@@ -40,4 +40,5 @@ Learn more about deploying your application with the [documentations](https://vi
 
 ## Todo
 
-- [ ] DB Example
+- [ ] DB Example (Offline)
+- [ ] PWA
