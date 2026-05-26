@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vp dev",
     "build": "tsgo -b && vp build",
-    "preview": "vp preview",
+    "preview": "bun run build && wrangler dev",
     "tsc": "tsgo -b",
     "lint": "vp lint --type-aware",
     "format": "vp fmt",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "deploy": "bun run build && wrangler deploy"
   },
   "dependencies": {
     "@corvu/calendar": "^0.1.2",
@@ -47,7 +48,8 @@
     "solid-devtools": "^0.34.5",
     "vite": "^8.0.14",
     "vite-plugin-solid": "^2.11.12",
-    "vite-plus": "^0.1.22"
+    "vite-plus": "^0.1.22",
+    "wrangler": "^4.94.0"
   },
   "overrides": {
     "cva": "^1.0.0-beta.4"
