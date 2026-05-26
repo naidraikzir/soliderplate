@@ -1,9 +1,9 @@
 import {
   Field,
   type FieldStore,
+  type FormSchema,
   type FormStore,
   type RequiredPath,
-  type Schema,
   type ValidPath,
 } from '@formisch/solid'
 import { Show, type JSX } from 'solid-js'
@@ -18,7 +18,7 @@ import {
   TextFieldTextArea,
 } from '../ui/text-field'
 
-type TFormTextareaProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormTextareaProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
@@ -27,12 +27,12 @@ type TFormTextareaProps<TSchema extends Schema, TFieldPath extends RequiredPath>
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
-export function FormTextarea<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormTextarea<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormTextareaProps<TSchema, TFieldPath>,
 ) {
   return (

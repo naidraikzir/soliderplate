@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import { For, type JSX, mergeProps, Show } from 'solid-js'
@@ -13,7 +13,7 @@ import { cx } from '@/lib/cva'
 
 import { Checkbox, CheckboxControl, CheckboxInput, CheckboxLabel } from '../ui/checkbox'
 
-type TFormCheckboxGroupProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormCheckboxGroupProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   orientation?: 'horizontal' | 'vertical'
@@ -27,12 +27,12 @@ type TFormCheckboxGroupProps<TSchema extends Schema, TFieldPath extends Required
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
-export function FormCheckboxGroup<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormCheckboxGroup<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormCheckboxGroupProps<TSchema, TFieldPath>,
 ) {
   const mergedProps = mergeProps({ orientation: 'vertical' }, props)

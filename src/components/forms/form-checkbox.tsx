@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import { Show, type JSX } from 'solid-js'
@@ -19,7 +19,7 @@ import {
   CheckboxLabel,
 } from '../ui/checkbox'
 
-type TFormCheckboxProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormCheckboxProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
@@ -28,12 +28,12 @@ type TFormCheckboxProps<TSchema extends Schema, TFieldPath extends RequiredPath>
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
-export function FormCheckbox<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormCheckbox<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormCheckboxProps<TSchema, TFieldPath>,
 ) {
   return (

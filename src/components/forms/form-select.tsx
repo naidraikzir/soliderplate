@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import { For, Show, type JSX } from 'solid-js'
@@ -33,7 +33,7 @@ type TOption = {
 }
 
 type TFormSelectProps<
-  TSchema extends Schema,
+  TSchema extends FormSchema,
   TFieldPath extends RequiredPath,
   TMultiple extends boolean,
 > = {
@@ -50,13 +50,13 @@ type TFormSelectProps<
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
 export function FormSelect<
-  TSchema extends Schema,
+  TSchema extends FormSchema,
   TFieldPath extends RequiredPath,
   TMultiple extends boolean = false,
 >(props: TFormSelectProps<TSchema, TFieldPath, TMultiple>) {

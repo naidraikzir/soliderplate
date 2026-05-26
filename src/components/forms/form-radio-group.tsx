@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import { For, Show, type JSX } from 'solid-js'
@@ -29,7 +29,7 @@ type TOption = {
   disabled?: boolean
 }
 
-type TFormRadioProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormRadioProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   orientation?: 'horizontal' | 'vertical'
@@ -39,12 +39,12 @@ type TFormRadioProps<TSchema extends Schema, TFieldPath extends RequiredPath> = 
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
-export function FormRadioGroup<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormRadioGroup<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormRadioProps<TSchema, TFieldPath>,
 ) {
   return (

@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import { createSignal, createUniqueId, For, Show, createEffect, type JSX } from 'solid-js'
@@ -13,7 +13,7 @@ import { cx } from '@/lib/cva'
 
 import { Button } from '../ui/button'
 
-type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormInputProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
@@ -24,14 +24,14 @@ type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = 
   columns?: 1 | 2
 }
 
-type TFieldDropzone<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldDropzone<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
 type TCreated = { base64: string; filename: string }
 
-export function FormDropzone<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormDropzone<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormInputProps<TSchema, TFieldPath>,
 ) {
   const id = `dropzone-${createUniqueId()}`

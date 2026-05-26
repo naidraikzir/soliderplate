@@ -1,9 +1,9 @@
 import {
   Field,
   type FieldStore,
+  type FormSchema,
   type FormStore,
   type RequiredPath,
-  type Schema,
   type ValidPath,
 } from '@formisch/solid'
 import { Show, type JSX } from 'solid-js'
@@ -13,7 +13,7 @@ import { cx } from '@/lib/cva'
 
 import { TextField, TextFieldErrorMessage, TextFieldInput, TextFieldLabel } from '../ui/text-field'
 
-type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = {
+type TFormInputProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
   of: FormStore<TSchema>
   path: ValidPath<v.InferInput<TSchema>, TFieldPath>
   class?: string
@@ -23,12 +23,12 @@ type TFormInputProps<TSchema extends Schema, TFieldPath extends RequiredPath> = 
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
-export function FormInput<TSchema extends Schema, TFieldPath extends RequiredPath>(
+export function FormInput<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
   props: TFormInputProps<TSchema, TFieldPath>,
 ) {
   return (

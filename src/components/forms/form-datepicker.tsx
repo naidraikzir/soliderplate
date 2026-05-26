@@ -3,7 +3,7 @@ import {
   type FieldStore,
   type FormStore,
   type RequiredPath,
-  type Schema,
+  type FormSchema,
   type ValidPath,
 } from '@formisch/solid'
 import dayjs from 'dayjs'
@@ -24,7 +24,7 @@ import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@/compon
 import { cx } from '@/lib/cva'
 
 type TFormDatePickerProps<
-  TSchema extends Schema,
+  TSchema extends FormSchema,
   TFieldPath extends RequiredPath,
   TRange extends boolean,
 > = {
@@ -38,13 +38,13 @@ type TFormDatePickerProps<
   disabled?: boolean
 }
 
-type TFieldInput<TSchema extends Schema, TFieldPath extends RequiredPath> = FieldStore<
+type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = FieldStore<
   TSchema,
   TFieldPath
 >['input']
 
 export function FormDatePicker<
-  TSchema extends Schema,
+  TSchema extends FormSchema,
   TFieldPath extends RequiredPath,
   TRange extends boolean = false,
 >(props: TFormDatePickerProps<TSchema, TFieldPath, TRange>) {
