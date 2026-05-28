@@ -113,7 +113,7 @@ export function FormDatePicker<
                         value={dayjs(calendar.value).format(mergedFormat())}
                       />
                       <PopoverPortal>
-                        <PopoverContent class="w-auto p-0">
+                        <PopoverContent class="w-auto p-0 bg-background/50 border-transparent backdrop-blur">
                           <div class="flex flex-col gap-4 rounded-md p-3 shadow-sm">
                             <div class="relative flex w-full items-center justify-between">
                               <CalendarNav action="prev-month" aria-label="Go to previous month" />
@@ -174,7 +174,7 @@ export function FormDatePicker<
                       value={`${dayjs(calendar.value.from!).format(mergedFormat())} - ${dayjs(calendar.value.to!).format(mergedFormat())}`}
                     />
                     <PopoverPortal>
-                      <PopoverContent class="w-auto p-0">
+                      <PopoverContent class="w-auto p-0 bg-background/50 border-transparent backdrop-blur">
                         <div class="rounded-md p-3 shadow-sm">
                           <div class="relative w-full">
                             <CalendarNav

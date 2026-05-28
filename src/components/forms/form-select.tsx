@@ -102,7 +102,7 @@ export function FormSelect<
                 <ComboboxErrorMessage class="text-xs">{field.errors?.[0]}</ComboboxErrorMessage>
               </Show>
               <ComboboxPortal>
-                <ComboboxContent class="data-closed:animate-none!" />
+                <ComboboxContent class="bg-background/50 border-transparent backdrop-blur data-closed:animate-none!" />
               </ComboboxPortal>
             </Combobox>
           }
@@ -178,7 +178,7 @@ export function FormSelect<
               <ComboboxErrorMessage class="text-xs">{field.errors?.[0]}</ComboboxErrorMessage>
             </Show>
             <ComboboxPortal>
-              <ComboboxContent class="data-closed:animate-none!" />
+              <ComboboxContent class="bg-background/50 border-transparent backdrop-blur data-closed:animate-none!" />
             </ComboboxPortal>
           </Combobox>
         </Show>
