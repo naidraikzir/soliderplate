@@ -1,4 +1,4 @@
-import { createForm, Form, getAllErrors, getInput, reset } from '@formisch/solid'
+import { createForm, Form, getDeepErrors, getInput, reset } from '@formisch/solid'
 import { createSignal } from 'solid-js'
 
 import {
@@ -167,7 +167,7 @@ export function FormExample() {
       </pre>
 
       <pre class="overflow-x-auto text-destructive p-2 rounded-lg text-xs">
-        {JSON.stringify(getAllErrors(form), null, 2)}
+        {JSON.stringify(getDeepErrors(form), null, 2)}
       </pre>
     </Form>
   )

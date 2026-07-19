@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "tsgo -b && vp build",
+    "build": "tsc -b && vp build",
     "preview": "vp preview",
-    "tsc": "tsgo -b",
+    "tsc": "tsc -b",
     "lint": "vp lint --type-aware",
     "format": "vp fmt",
     "prepare": "vp config"
@@ -16,7 +16,7 @@
     "@corvu/calendar": "^0.1.2",
     "@fontsource-variable/bricolage-grotesque": "^5.2.10",
     "@fontsource-variable/fraunces": "^5.2.9",
-    "@formisch/solid": "^0.10.0",
+    "@formisch/solid": "^1.0.0-rc.0",
     "@kobalte/core": "^0.13.11",
     "@tanstack/query-core": "^5.101.0",
     "@tanstack/query-db-collection": "^1.0.38",
@@ -25,7 +25,7 @@
     "@tanstack/solid-router": "^1.170.11",
     "cva": "^1.0.0-beta.4",
     "dayjs": "^1.11.21",
-    "es-toolkit": "^1.47.0",
+    "es-toolkit": "^1.49.0",
     "ky": "^2.0.2",
     "solid-js": "^1.9.13",
     "tailwind-merge": "^3.6.0",
@@ -41,15 +41,16 @@
     "@inlang/paraglide-js": "^2.18.2",
     "@tailwindcss/vite": "^4.3.0",
     "@tanstack/router-plugin": "^1.168.14",
-    "@types/node": "^25.9.1",
-    "@typescript/native-preview": "^7.0.0-dev.20260605.1",
+    "@types/node": "^26.1.1",
     "eslint-plugin-solid": "^0.14.5",
     "solid-devtools": "^0.34.5",
-    "vite": "^8.0.16",
+    "typescript": "^7.0.2",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plugin-solid": "^2.11.12",
-    "vite-plus": "^0.1.24"
+    "vite-plus": "^0.2.5"
   },
   "overrides": {
-    "cva": "^1.0.0-beta.4"
+    "cva": "^1.0.0-beta.4",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest"
   }
 }
