@@ -6,11 +6,12 @@ import {
   type RequiredPath,
   type ValidPath,
 } from '@formisch/solid'
-import { Show, type JSX } from 'solid-js'
+import { splitProps, Show, type JSX } from 'solid-js'
 import * as v from 'valibot'
 
 import { cx } from '@/lib/cva'
 
+import type { TextFieldInputProps } from '../ui/text-field'
 import { TextField, TextFieldErrorMessage, TextFieldInput, TextFieldLabel } from '../ui/text-field'
 
 type TFormInputProps<TSchema extends FormSchema, TFieldPath extends RequiredPath> = {
@@ -28,21 +29,36 @@ type TFieldInput<TSchema extends FormSchema, TFieldPath extends RequiredPath> = 
   TFieldPath
 >['input']
 
+type TFormInputPropsWithRest<
+  TSchema extends FormSchema,
+  TFieldPath extends RequiredPath,
+> = TFormInputProps<TSchema, TFieldPath> &
+  Omit<TextFieldInputProps, keyof TFormInputProps<TSchema, TFieldPath>>
+
 export function FormInput<TSchema extends FormSchema, TFieldPath extends RequiredPath>(
-  props: TFormInputProps<TSchema, TFieldPath>,
+  props: TFormInputPropsWithRest<TSchema, TFieldPath>,
 ) {
+  const [fieldProps, inputProps] = splitProps(
+    props as TFormInputPropsWithRest<TSchema, TFieldPath>,
+    ['of', 'path', 'class', 'type', 'label', 'placeholder', 'disabled'],
+  )
+
   return (
-    <Field of={props.of} path={props.path}>
+    <Field of={fieldProps.of} path={fieldProps.path}>
       {(field) => (
-        <div class={cx('self-start', props.class)}>
+        <div class={cx('self-start', fieldProps.class)}>
           <TextField
             value={field.input as string}
             onChange={(value) => field.onInput(value as TFieldInput<TSchema, TFieldPath>)}
             validationState={field.errors ? 'invalid' : 'valid'}
-            disabled={props.disabled}
+            disabled={fieldProps.disabled}
           >
-            <TextFieldLabel>{props.label}</TextFieldLabel>
-            <TextFieldInput type={props.type} placeholder={props.placeholder} />
+            <TextFieldLabel>{fieldProps.label}</TextFieldLabel>
+            <TextFieldInput
+              type={fieldProps.type}
+              placeholder={fieldProps.placeholder}
+              {...inputProps}
+            />
             <Show when={field.errors}>
               <TextFieldErrorMessage class="text-xs data-disabled:opacity-50">
                 {field.errors?.[0]}

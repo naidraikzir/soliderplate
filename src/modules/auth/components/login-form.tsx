@@ -24,13 +24,21 @@ export function LoginForm(props: { onSuccess?: () => void }) {
         Login <ThemeSwitcher />
       </div>
 
-      <FormInput of={loginForm} path={['username']} label="Username" placeholder="Username..." />
+      <FormInput
+        of={loginForm}
+        path={['username']}
+        label="Username"
+        placeholder="Username..."
+        autocomplete="username"
+      />
+
       <FormInput
         of={loginForm}
         path={['password']}
         type="password"
         label="Password"
         placeholder="********"
+        autocomplete="current-password"
       />
 
       <Button type="submit" class="justify-self-end">

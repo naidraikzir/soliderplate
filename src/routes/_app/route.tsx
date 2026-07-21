@@ -32,20 +32,22 @@ function RouteComponent() {
   const [bg, toggleBg] = createSignal(false)
 
   return (
-    <main class="grid grid-cols-1 gap-2 p-2">
+    <main class="grid grid-cols-1 gap-4 p-4">
       <div
-        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover', { 'opacity-100': bg() })}
+        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none', {
+          'opacity-100': bg(),
+        })}
         style={{ 'background-image': `url(${bgLight})` }}
       />
       <div
-        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover', {
+        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none', {
           'dark:opacity-100': bg(),
         })}
         style={{ 'background-image': `url(${bgDark})` }}
       />
-      <div class="fixed inset-0 bg-background/50" />
+      <div class="fixed inset-0 bg-background/50 pointer-events-none" />
 
-      <header class="relative flex items-center justify-between gap-4 z-2">
+      <header class="relative flex items-center justify-between gap-2 z-2">
         <div class="flex gap-1 sm:gap-2">
           <For each={links}>
             {({ to, label }) => (
@@ -62,7 +64,7 @@ function RouteComponent() {
             <span class="icon-[lucide--image]" />
           </Button>
           <ThemeSwitcher />
-          <Button onClick={onLogout}>
+          <Button variant="ghost" class="size-8 sm:size-auto p-0 sm:h-8 sm:px-2" onClick={onLogout}>
             <span class="icon-[lucide--log-out] sm:hidden" />
             <span class="hidden sm:inline">Logout</span>
           </Button>
