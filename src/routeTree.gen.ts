@@ -12,9 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
-import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
-import { Route as AppProductsIndexRouteImport } from './routes/_app/products/index'
 import { Route as AppFormExampleIndexRouteImport } from './routes/_app/form-example/index'
+import { Route as AppProductsIndexRouteImport } from './routes/_app/products/index'
+import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -30,9 +30,9 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/settings/',
-  path: '/settings/',
+const AppFormExampleIndexRoute = AppFormExampleIndexRouteImport.update({
+  id: '/form-example/',
+  path: '/form-example/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppProductsIndexRoute = AppProductsIndexRouteImport.update({
@@ -40,9 +40,9 @@ const AppProductsIndexRoute = AppProductsIndexRouteImport.update({
   path: '/products/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppFormExampleIndexRoute = AppFormExampleIndexRouteImport.update({
-  id: '/form-example/',
-  path: '/form-example/',
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 
@@ -112,11 +112,11 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/settings/': {
-      id: '/_app/settings/'
-      path: '/settings'
-      fullPath: '/settings/'
-      preLoaderRoute: typeof AppSettingsIndexRouteImport
+    '/_app/form-example/': {
+      id: '/_app/form-example/'
+      path: '/form-example'
+      fullPath: '/form-example/'
+      preLoaderRoute: typeof AppFormExampleIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/products/': {
@@ -126,11 +126,11 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof AppProductsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/form-example/': {
-      id: '/_app/form-example/'
-      path: '/form-example'
-      fullPath: '/form-example/'
-      preLoaderRoute: typeof AppFormExampleIndexRouteImport
+    '/_app/settings/': {
+      id: '/_app/settings/'
+      path: '/settings'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
   }
