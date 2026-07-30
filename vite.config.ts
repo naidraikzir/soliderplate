@@ -32,6 +32,7 @@ export default defineConfig({
     paraglideVitePlugin({
       project: './project.inlang',
       outdir: './src/paraglide',
+      emitTsDeclarations: true,
     }),
     tailwindcss(),
     tanstackRouter({
