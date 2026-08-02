@@ -38,18 +38,18 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
-    "@iconify-json/lucide": "^1.2.120",
+    "@iconify-json/lucide": "^1.2.121",
     "@iconify/tailwind4": "^1.2.3",
-    "@inlang/paraglide-js": "^2.23.0",
+    "@inlang/paraglide-js": "^2.23.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/router-plugin": "^1.168.23",
     "@types/node": "^26.1.2",
     "eslint-plugin-solid": "^0.14.5",
     "solid-devtools": "^0.34.5",
     "typescript": "^7.0.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.6",
+    "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.7",
     "vite-plugin-solid": "^2.11.14",
-    "vite-plus": "^0.2.6"
+    "vite-plus": "^0.2.7"
   },
   "overrides": {
     "cva": "^1.0.0-beta.4",
