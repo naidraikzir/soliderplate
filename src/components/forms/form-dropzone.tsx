@@ -86,12 +86,12 @@ export function FormDropzone<TSchema extends FormSchema, TFieldPath extends Requ
 
             <div
               class={cx(
-                'relative min-h-24 flex flex-col items-center justify-center gap-2 dark:bg-input/30',
+                'relative min-h-32 flex flex-col items-center justify-center gap-2 dark:bg-input/30',
                 'border-2 border-dashed border-input rounded-md data-invalid:border-destructive p-2 data-invalid:text-destructive',
               )}
               data-invalid={field.errors}
             >
-              <div>{props.placeholder || 'Drop'}</div>
+              <div class="text-neutral-500 italic">{props.placeholder || 'Drop'}</div>
               <input
                 type="file"
                 id={id}

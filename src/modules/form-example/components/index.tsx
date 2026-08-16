@@ -71,6 +71,7 @@ export function FormExample() {
         class="sm:col-span-2"
         label="Textarea"
         placeholder="Textarea..."
+        rows={6}
         disabled={disabled()}
       />
 

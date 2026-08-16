@@ -18,7 +18,7 @@ export function ProductList() {
             <CardHeader class="px-4 sm:px-6">
               <CardTitle class="flex justify-between gap-2">
                 <div class="text-lg">{product.title}</div>
-                <div class="text-2xl">{product.price}</div>
+                <div class="text-2xl font-mono">${product.price}</div>
               </CardTitle>
             </CardHeader>
             <CardContent class="flex gap-2 px-4 sm:px-6">

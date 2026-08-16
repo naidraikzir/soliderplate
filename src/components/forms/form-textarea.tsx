@@ -24,6 +24,7 @@ type TFormTextareaProps<TSchema extends FormSchema, TFieldPath extends RequiredP
   class?: string
   label?: JSX.Element
   placeholder?: string
+  rows?: number | string
   disabled?: boolean
 }
 
@@ -46,7 +47,11 @@ export function FormTextarea<TSchema extends FormSchema, TFieldPath extends Requ
             disabled={props.disabled}
           >
             <TextFieldLabel>{props.label}</TextFieldLabel>
-            <TextFieldTextArea placeholder={props.placeholder} autoResize />
+            <TextFieldTextArea
+              placeholder={props.placeholder}
+              rows={Number(props.rows)}
+              autoResize
+            />
             <Show when={field.errors}>
               <TextFieldErrorMessage class="text-xs data-disabled:opacity-50">
                 {field.errors?.[0]}

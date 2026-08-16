@@ -54,10 +54,12 @@
   "overrides": {
     "cva": "^1.0.0-beta.4",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vitest/vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "fast-uri": "^4.1.2",
     "svgo": "^4.0.2",
     "brace-expansion": "^5.0.9",
     "postcss": "^8.5.25",
+    "nanoid": "^3.3.18",
     "js-yaml": "^5.2.3"
   },
   "devEngines": {
