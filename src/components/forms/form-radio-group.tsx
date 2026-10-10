@@ -63,7 +63,7 @@ export function FormRadioGroup<TSchema extends FormSchema, TFieldPath extends Re
               {props.label}
             </RadioGroupLabel>
             <RadioGroupItems
-              class={cx('gap-x-4 gap-y-2', { 'flex-col': props.orientation === 'vertical' })}
+              class={cx('gap-x-4 gap-y-2', props.orientation === 'vertical' && 'flex-col')}
             >
               <For each={props.options}>
                 {(item) => (

@@ -26,7 +26,7 @@ export function LocaleSwitcher(props: { class?: string }) {
             <Button
               variant="ghost"
               size="icon-sm"
-              class={cx('block border', { 'opacity-50 border-0': locale !== getLocale() })}
+              class={cx('block border', locale !== getLocale() && 'opacity-50 border-0')}
               onClick={() => {
                 setIsOpen(false)
 

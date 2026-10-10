@@ -90,7 +90,7 @@ export function FormSelect<
             >
               <ComboboxLabel>{props.label}</ComboboxLabel>
               <ComboboxControl<TOption>
-                class={cx('h-auto min-h-9', { 'animate-pulse': props.isLoading })}
+                class={cx('h-auto min-h-9', props.isLoading && 'animate-pulse')}
               >
                 <ComboboxInput class="flex-1" />
                 <ComboboxTrigger />
@@ -133,7 +133,7 @@ export function FormSelect<
           >
             <ComboboxLabel>{props.label}</ComboboxLabel>
             <ComboboxControl<TOption>
-              class={cx('h-auto min-h-9', { 'animate-pulse': props.isLoading })}
+              class={cx('h-auto min-h-9', props.isLoading && 'animate-pulse')}
             >
               {(state) => (
                 <div class="flex flex-wrap items-center gap-1 flex-1">

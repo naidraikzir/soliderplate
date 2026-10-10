@@ -21,18 +21,27 @@ const router = createRouter({
   ),
 })
 
-render(() => {
-  const storageManager = cookieStorageManagerSSR(document.cookie)
+async function enableMocking() {
+  if (import.meta.env.PROD) return
 
-  return (
-    <>
-      <ColorModeScript storageType={storageManager.type} />
-      <ColorModeProvider storageManager={storageManager}>
-        <RouterProvider
-          router={router}
-          context={{ isAuthenticated: () => !!localStorage.getItem('is_authenticated') }}
-        />
-      </ColorModeProvider>
-    </>
-  )
-}, root!)
+  const { worker } = await import('./mocks/browser')
+  await worker.start({ onUnhandledFrame: 'bypass' })
+}
+
+void enableMocking().then(() => {
+  render(() => {
+    const storageManager = cookieStorageManagerSSR(document.cookie)
+
+    return (
+      <>
+        <ColorModeScript storageType={storageManager.type} />
+        <ColorModeProvider storageManager={storageManager}>
+          <RouterProvider
+            router={router}
+            context={{ isAuthenticated: () => !!localStorage.getItem('is_authenticated') }}
+          />
+        </ColorModeProvider>
+      </>
+    )
+  }, root!)
+})

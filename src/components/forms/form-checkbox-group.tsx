@@ -66,9 +66,10 @@ export function FormCheckboxGroup<TSchema extends FormSchema, TFieldPath extends
               {props.label}
             </span>
             <div
-              class={cx('flex gap-3 gap-x-4 gap-y-2', {
-                'flex-col': mergedProps.orientation === 'vertical',
-              })}
+              class={cx(
+                'flex gap-3 gap-x-4 gap-y-2',
+                mergedProps.orientation === 'vertical' && 'flex-col',
+              )}
             >
               <For each={props.options}>
                 {(option) => (

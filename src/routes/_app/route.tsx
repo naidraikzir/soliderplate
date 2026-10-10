@@ -34,15 +34,17 @@ function RouteComponent() {
   return (
     <main class="grid grid-cols-1 gap-4 p-4">
       <div
-        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none', {
-          'opacity-100': bg(),
-        })}
+        class={cx(
+          'fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none',
+          bg() && 'opacity-100',
+        )}
         style={{ 'background-image': `url(${bgLight})` }}
       />
       <div
-        class={cx('fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none', {
-          'dark:opacity-100': bg(),
-        })}
+        class={cx(
+          'fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none',
+          bg() && 'dark:opacity-100',
+        )}
         style={{ 'background-image': `url(${bgDark})` }}
       />
       <div class="fixed inset-0 bg-background/50 pointer-events-none" />
