@@ -29,7 +29,13 @@ function RouteComponent() {
     void navigate({ to: '/login' })
   }
 
-  const [bg, toggleBg] = createSignal(false)
+  const [bg, setBg] = createSignal(localStorage.getItem('bg') === '1')
+
+  function toggleBg() {
+    const next = !bg()
+    localStorage.setItem('bg', next ? '1' : '0')
+    setBg(next)
+  }
 
   return (
     <main class="grid grid-cols-1 gap-4 p-4">
@@ -62,7 +68,7 @@ function RouteComponent() {
 
         <div class="flex items-center gap-1 sm:gap-2">
           <LocaleSwitcher />
-          <Button variant="ghost" size="icon-sm" onClick={() => toggleBg((bg) => !bg)}>
+          <Button variant="ghost" size="icon-sm" onClick={toggleBg}>
             <span class="icon-[lucide--image]" />
           </Button>
           <ThemeSwitcher />
