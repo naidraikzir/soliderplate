@@ -5,5 +5,7 @@ export const Route = createFileRoute('/_app/settings/')({
 })
 
 function RouteComponent() {
-  return <div class="text-4xl capitalize font-heading font-semibold">Settings</div>
+  return (
+    <div class="max-w-4xl mx-auto text-4xl capitalize font-heading font-semibold">Settings</div>
+  )
 }

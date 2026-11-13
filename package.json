@@ -26,6 +26,7 @@
     "@tanstack/solid-db": "^1.0.0-rc.1.5",
     "@tanstack/solid-query": "^5.107.1",
     "@tanstack/solid-router": "^1.170.43",
+    "@tanstack/solid-virtual": "^3.13.53",
     "cva": "^1.0.0-beta.12",
     "dayjs": "^1.11.23",
     "es-toolkit": "^1.53.2",

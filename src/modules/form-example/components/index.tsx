@@ -52,7 +52,11 @@ export function FormExample() {
   useBlocker(() => form.isDirty)
 
   return (
-    <Form of={form} onSubmit={onSubmit} class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+    <Form
+      of={form}
+      onSubmit={onSubmit}
+      class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+    >
       <div class="text-4xl capitalize font-heading font-extrabold sm:col-span-2">
         {m.form_example()}
       </div>

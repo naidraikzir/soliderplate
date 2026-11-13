@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, redirect } from '@tanstack/solid-router'
+import { createFileRoute, Link, Outlet, redirect, useRouterState } from '@tanstack/solid-router'
 import { createSignal, For } from 'solid-js'
 
 import bgDark from '@/assets/bg-dark.webp'
@@ -38,7 +38,7 @@ function RouteComponent() {
   }
 
   return (
-    <main class="grid grid-cols-1 gap-4 p-4">
+    <main class="grid grid-cols-1 gap-4">
       <div
         class={cx(
           'fixed inset-0 opacity-0 transition bg-fixed bg-cover pointer-events-none',
@@ -55,14 +55,20 @@ function RouteComponent() {
       />
       <div class="fixed inset-0 bg-background/50 pointer-events-none" />
 
-      <header class="relative flex items-center justify-between gap-2 z-2">
+      <header class="sticky top-0 flex items-center justify-between gap-2 bg-background/5 backdrop-blur-2xl p-4 z-2">
         <div class="flex gap-1 sm:gap-2">
           <For each={links}>
-            {({ to, label }) => (
-              <Link to={to} class="px-2">
-                {label}
-              </Link>
-            )}
+            {({ to, label }) => {
+              const pathname = useRouterState({ select: (s) => s.location.pathname })
+              return (
+                <Link
+                  to={to}
+                  class={cx('relative px-2', pathname() === to ? '' : 'text-foreground/50')}
+                >
+                  {label}
+                </Link>
+              )
+            }}
           </For>
         </div>
 
@@ -79,7 +85,7 @@ function RouteComponent() {
         </div>
       </header>
 
-      <div class="w-2xl max-w-full mx-auto z-1">
+      <div class="p-4 z-1">
         <Outlet />
       </div>
     </main>

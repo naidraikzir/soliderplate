@@ -11,10 +11,8 @@ export const Route = createFileRoute('/_app/')({
 function RouteComponent() {
   const home = Route.useLoaderData()
 
-  console.log(home())
-
   return (
-    <div class="grid grid-cols-1 gap-4">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 gap-4">
       <div class="text-4xl capitalize font-heading font-extrabold">{home().title}</div>
       <article class="grid gap-2">
         <For each={home().content.split('\n')}>{(p) => <p>{p}</p>}</For>

@@ -6,7 +6,7 @@ import type { TPaginated } from '@/types'
 
 const API = import.meta.env.VITE_API_URL
 
-const products: TProduct[] = Array.from({ length: 25 }, (_, i) => ({
+const products: TProduct[] = Array.from({ length: 500 }, (_, i) => ({
   id: i + 1,
   title: faker.commerce.productName(),
   description: faker.commerce.productDescription(),
